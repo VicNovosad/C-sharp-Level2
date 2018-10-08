@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -6,99 +7,169 @@ namespace MyGame
 {
     static class Game
     {
+        /// <summary>
+        /// Class properties
+        /// </summary>
         private static BufferedGraphicsContext _context;
         public static BufferedGraphics Buffer;
-        public static BaseObject[] _objs;
-        private static Random rnd = new Random();
-        private static int objQty = 50;
+        public static List<BaseObject> objsList = new List<BaseObject>();
+        public static List<BaseObject> bulletList = new List<BaseObject>();
+        public static List<BaseObject> asteroidList = new List<BaseObject>();
 
-        // Свойства - Ширина и высота игрового поля
+
         public static int Width { get; set; }
         public static int Height { get; set; }
 
-        /// constructor for static fields
+        private static Random rnd = new Random();
+
+        /// <summary>
+        /// Constructor for static fields
+        /// </summary>
         static Game()
         {
         }
 
+        /// <summary>
+        /// Initialization method
+        /// </summary>
+        /// <param name="form"></param>
         public static void Init(Form form)
         {
-            Load();
-            // Графическое устройство для вывода графики
-            Graphics g;
-            // Предоставляет доступ к главному буферу графического контекста для текущего приложения
-            _context = BufferedGraphicsManager.Current;
-            g = form.CreateGraphics();
-            // Создаем объект (поверхность рисования) и связываем его с формой
-            // Запоминаем размеры формы
+            // Create an object (drawing surface) and associate it with a form.
+            #region size of the graphics form
+            // Remember the size of the form
             //Width = form.Width;
             //Height = form.Height;
             Width = form.ClientSize.Width;
             Height = form.ClientSize.Height;
+            #endregion
+            Load();
+            
+            Graphics g; // Graphic display device
+            _context = BufferedGraphicsManager.Current; // Provides access to the main graphics context buffer for the current application.
+            g = form.CreateGraphics();
 
-            // Связываем буфер в памяти с графическим объектом, чтобы рисовать в буфере
+            // Link the buffer in memory with the graphic object to draw in the buffer
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
-            Timer timer = new Timer { Interval = 300 };
+            Timer timer = new Timer { Interval = 60 };
             timer.Start();
             timer.Tick += Timer_Tick;
         }
 
+        /// <summary>
+        /// Timer Ticker method 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private static void Timer_Tick(object sender, EventArgs e)
         {
             Draw();
             Update();
         }
 
+        /// <summary>
+        /// Method of drawing and rendering graphics
+        /// </summary>
         public static void Draw()
         {
-            // Проверяем вывод графики
-            //Buffer.Graphics.Clear(Color.Black);
-            //Buffer.Graphics.DrawRectangle(Pens.White, new Rectangle(100, 100, 200, 200));
-            //Buffer.Graphics.FillEllipse(Brushes.Wheat, new Rectangle(100, 100, 200, 200));
-            //Buffer.Render();
+            // Graphics output
             Buffer.Graphics.Clear(Color.Black);
-            foreach (BaseObject obj in _objs)
+            foreach (BaseObject obj in objsList)
                 obj.Draw();
             Buffer.Render();
         }
 
+        /// <summary>
+        /// Updating all graphics objects in objsList
+        /// </summary>
         public static void Update()
         {
-            foreach (BaseObject obj in _objs)
+            foreach (BaseObject obj in objsList)
                 obj.Update();
         }
 
+        /// <summary>
+        /// Load objects in objsList
+        /// </summary>
         public static void Load()
         {
-            _objs = new BaseObject[objQty];
+            int baseObjQty = 10;
+            int starQty = 20;
+            int spaceObjQty = 20;
+            int planetQty = 7;
+            int sunQty = 5;
 
-            for (int i = 0; i < _objs.Length / 4; i++)
+            int baseObjMaxSize = 5;
+            int starMaxSize = 5;
+            int spaceObjMaxSize = 6;
+            int sunMaxSize = 6;
+
+            int baseObjMaxSpeed = 5;
+            int starMaxSpeed = 3;
+            int spaceObjMaxSpeed = 6;
+            int planetMaxSpeed = 6;
+            int sunMaxSpeed = 5;
+
+            int spaceObjVariety = 10; //quantity of space objects pictures
+
+            #region Background
+            objsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background"));
+            #endregion
+
+            #region base objects
+
+            for (int i = 0; i < baseObjQty; i++)
             {
-                int size = rnd.Next(1, 10);
-                _objs[i] = new BaseObject(new Point(rnd.Next(1, 800), rnd.Next(1, 600)), new Point(rnd.Next(2, 10), rnd.Next(2, 15)), new Size(size, size));
-
+                int size = rnd.Next(1, baseObjMaxSize);
+                int spdX = rnd.Next(2, baseObjMaxSpeed);
+                int spdY = 1;
+                objsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
             }
+            #endregion
 
-            for (int i = _objs.Length / 4; i < (_objs.Length / 4) * 2; i++)
+            #region stars
+            for (int i = 0; i < starQty; i++)
             {
-                int size = rnd.Next(1, 5);
-                _objs[i] = new Star(new Point(rnd.Next(1, 800), rnd.Next(1, 600)), new Point(rnd.Next(2, 10), rnd.Next(2, 15)), new Size(size, size));
+                int size = rnd.Next(1, starMaxSize);
+                int spdX = rnd.Next(2, starMaxSpeed);
+                int spdY = 1;
+                objsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
             }
+            #endregion
 
-            for (int i = (_objs.Length / 4) * 2; i < (_objs.Length / 4) * 3; i++)
+            #region SpaceObjects
+            for (int i = 1; i <= spaceObjQty; i++)
             {
-                int size = rnd.Next(1, 6);
-                _objs[i] = new SpaceObjects(new Point(rnd.Next(1, 800), rnd.Next(1, 600)), new Point(rnd.Next(2, 10), rnd.Next(2, 15)), new Size(size, size), $"{rnd.Next(1, 10)}");
+                int size = rnd.Next(1, spaceObjMaxSize);
+                int spdX = rnd.Next(2, spaceObjMaxSpeed);
+                int spdY = rnd.Next(1);
+                objsList.Add(new SpaceObjects(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"{rnd.Next(1, spaceObjVariety)}"));
             }
+            #endregion
 
-            for (int i = (_objs.Length / 4) * 3; i < _objs.Length - 1; i++)
+            #region Planets
+            for (int i = 1; i <= planetQty; i++)
             {
-                int size = rnd.Next(1, 6);
-                _objs[i] = new SpaceObjects(new Point(rnd.Next(1, 800), rnd.Next(1, 600)), new Point(rnd.Next(2, 10), rnd.Next(2, 15)), new Size(size, size), $"{rnd.Next(11, 15)}");
+                int size = rnd.Next(1, spaceObjMaxSize);
+                int spdX = rnd.Next(2, planetMaxSpeed);
+                int spdY = rnd.Next(1);
+                objsList.Add(new Planet(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"Planet{i}"));
             }
+            #endregion
 
-            _objs[_objs.Length - 1] = new SpaceShip(new Point(1, 215), new Point(1,1), new Size(1, 1), "SpaceShip2");
+            #region Suns
+            for (int i = 1; i <= sunQty; i++)
+            {
+                int size = rnd.Next(1, sunMaxSize);
+                int spdX = rnd.Next(2, sunMaxSpeed);
+                int spdY = rnd.Next(1);
+                objsList.Add(new Sun(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"sun{i}"));
+            }
+            #endregion
 
+            #region SpaceShip
+            objsList.Add(new SpaceShip(new Point(1, Height / 2 - 65), new Point(1, 1), new Size(1, 1), "SpaceShip"));
+            #endregion
         }
     }
 }

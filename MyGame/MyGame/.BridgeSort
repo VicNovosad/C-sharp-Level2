@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<dirinfo>
+<files>
+<item key='bin20181003160417' />
+<item key='obj20181003160417' />
+<item key='Properties20181004130647' />
+<item key='Temp_pic20181004102345' />
+<item key='1.png20181004095626' />
+<item key='2.png20181004102119' />
+<item key='3.png20181004102119' />
+<item key='4.png20181004102119' />
+<item key='5.png20181004102119' />
+<item key='6.png20181004103254' />
+<item key='7.png20181004103636' />
+<item key='8.png20181004104053' />
+<item key='9.png20181004104117' />
+<item key='10.png20181004104326' />
+<item key='sun1.png20181004105409' />
+<item key='sun2.png20181004105555' />
+<item key='sun3.png20181004105608' />
+<item key='sun4.png20181004105641' />
+<item key='sun5.png20181004105739' />
+<item key='App.config20181003160417' />
+<item key='Background2.png20181004114428' />
+<item key='BaseObject.cs20181003163550' />
+<item key='Game.cs20181003161052' />
+<item key='MyGame.csproj20181003160417' />
+<item key='Program.cs20181003160417' />
+<item key='SpaceObjects.cs20181004094641' />
+<item key='SpaceShip.cs20181004111227' />
+<item key='SpaceShip0.png20181007153456' />
+<item key='Star.cs20181004010452' />
+<item key='SpaceShip1.png20181007155542' />
+<item key='SpaceShip2.png20181007155603' />
+<item key='SpaceShip3.png20181007160000' />
+<item key='Background0.png20181007162119' />
+<item key='planet1.png20181007184351' />
+<item key='planet2.png20181007184415' />
+<item key='planet3.png20181007184457' />
+<item key='planet4.png20181007184552' />
+<item key='planet5.png20181007184617' />
+<item key='planet7.png20181007184826' />
+<item key='planet6.png20181007184754' />
+<item key='BackGround.cs20181007204540' />
+<item key='Background.jpg20181007205914' />
+<item key='Planet.cs20181007183412' />
+<item key='sun.cs20181007193616' />
+</files>
+</dirinfo>

@@ -2,67 +2,46 @@
 using System.Drawing;
 namespace MyGame
 {
+    /// <summary>
+    /// Base Object (Point position(x,y), Point direction(x,y), Size size(x,y))
+    /// </summary>
     class BaseObject
     {
-        protected Point Pos;  //position
-        protected Point Dir; //direction
+        /// <summary>
+        /// class properties
+        /// </summary>
+        protected Point Position;
+        protected Point Direction;
         protected Size Size;
-        protected int SizeDir;
-        private static Random rnd = new Random();
 
-        public BaseObject(Point pos, Point dir, Size size)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="direction"></param>
+        /// <param name="size"></param>
+        public BaseObject(Point position, Point direction, Size size)
         {
-            Pos = pos;
-            Dir = dir;
+            Position = position;
+            Direction = direction;
             Size = size;
-            SizeDir = rnd.Next(1, 2);
         }
+
+        /// <summary>
+        /// Virtual method "Draw"
+        /// </summary>
         public virtual void Draw()
         {
-            Game.Buffer.Graphics.DrawEllipse(Pens.White, Pos.X, Pos.Y, Size.Width, Size.Height);
+            Game.Buffer.Graphics.DrawEllipse(Pens.White, Position.X, Position.Y, Size.Width, Size.Height);
         }
 
-        public void Resize()
-        {
-
-            //Console.WriteLine("Was " + this.Size.Height);
-            if (this.Size.Height < 2)
-            {
-                this.Size.Height += 1;
-                this.Size.Width += 1;
-            }
-            else if (this.Size.Height > 15)
-            {
-                this.Size.Height -= 1;
-                this.Size.Width -= 1;
-            }
-            else if (SizeDir == 1)
-            {
-                this.Size.Height -= 1;
-                this.Size.Width -= 1;
-            }
-            else if (SizeDir == 2)
-            {
-                this.Size.Height += 1;
-                this.Size.Width += 1;
-            }
-
-
-            //Console.WriteLine("Now " + this.Size.Height);
-            //Console.ReadKey();
-        }
-
+        /// <summary>
+        /// Virtual method "Update"
+        /// </summary>
         public virtual void Update()
         {
-            Pos.X = Pos.X - Dir.X;
-            if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
-            //Pos.X = Pos.X + Dir.X;
-            //Pos.Y = Pos.Y + Dir.Y;
-            //if (Pos.X <= 0) Dir.X = -Dir.X;
-            //if (Pos.X >= Game.Width - Size.Width - 1) Dir.X = -Dir.X;
-            //if (Pos.Y <= 0) Dir.Y = -Dir.Y;
-            //if (Pos.Y > Game.Height - Size.Width - 1) Dir.Y = -Dir.Y;
-            //Resize();       
+            Position.X = Position.X - Direction.X;
+            if (Position.X < 0) Position.X = Game.Width + Size.Width;
         }
     }
 }
