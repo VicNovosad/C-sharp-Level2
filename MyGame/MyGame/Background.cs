@@ -13,6 +13,7 @@ namespace MyGame
     class Background : BaseObject
     {
         private string imageName;
+        private Point position = new Point(1, 1);
         private Image Img { get; set; }
 
         /// <summary>
@@ -44,9 +45,8 @@ namespace MyGame
         {
             // Create Point (upper-left corner of image)
             Point ulCorner = Position;
-
             // Draw image to screen
-            SplashScreen.Buffer.Graphics.DrawImage(Img, ulCorner);
+            Game.Buffer.Graphics.DrawImage(Img, ulCorner);
         }
 
         /// <summary>

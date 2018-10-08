@@ -17,7 +17,6 @@ namespace MyGame
         public static int Width { get; set; }
         public static int Height { get; set; }
 
-        private static bool gameStarted = false;
         private static Random rnd = new Random();
 
         /// <summary>
@@ -73,7 +72,23 @@ namespace MyGame
 
         private static void StartBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Start (need to close currnt form)");
+            //MessageBox.Show("Start (need to close currnt form)");
+
+            Buffer.Graphics.Clear(Color.Black);
+            Form.ActiveForm.Visible = false;
+
+            Form form = new Form();
+            form.Name = "Game";
+            form.Text = "Asteroids";
+            form.Width = Width;
+            form.Height = Height;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            Game.Init(form);
+            form.Show();
+            Game.Draw();
+            Application.Run(form);
+
+            //Form.ActiveForm.Enabled = false;
         }
         private static void RecordsBtn_Click(object sender, EventArgs e)
         {
@@ -84,11 +99,6 @@ namespace MyGame
             if (Application.MessageLoop) Application.Exit(); else Environment.Exit(1);
         }
         #endregion
-
-        private static void CloseCurrentForm(Form form)
-        {
-            form.Close();
-        }
 
         /// <summary>
         /// Initialization method
@@ -104,12 +114,12 @@ namespace MyGame
             Graphics g; // Graphic display device
             _context = BufferedGraphicsManager.Current; // Provides access to the main graphics context buffer for the current application.
             g = form.CreateGraphics();
-
             // Link the buffer in memory with the graphic object to draw in the buffer
             Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
-            Timer timer = new Timer { Interval = 60 };
-            timer.Start();
-            timer.Tick += Timer_Tick;
+
+            //Timer timer = new Timer { Interval = 60 };
+            //timer.Start();
+            //timer.Tick += Timer_Tick;
         }
 
         /// <summary>
@@ -119,7 +129,7 @@ namespace MyGame
         /// <param name="e"></param>
         private static void Timer_Tick(object sender, EventArgs e)
         {
-            Draw();
+            //Draw();
             //Update();
         }
 
@@ -140,8 +150,8 @@ namespace MyGame
         /// </summary>
         public static void Update()
         {
-            foreach (BaseObject obj in objsList)
-                obj.Update();
+            //foreach (BaseObject obj in objsList)
+            //    obj.Update();
         }
 
         public static void Load()
