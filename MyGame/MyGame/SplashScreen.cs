@@ -75,7 +75,9 @@ namespace MyGame
             //MessageBox.Show("Start (need to close currnt form)");
 
             Buffer.Graphics.Clear(Color.Black);
+            Form.ActiveForm.Enabled = false;
             Form.ActiveForm.Visible = false;
+            //Form.ActiveForm.Close();
 
             Form form = new Form();
             form.Name = "Game";
@@ -86,9 +88,7 @@ namespace MyGame
             Game.Init(form);
             form.Show();
             Game.Draw();
-            Application.Run(form);
 
-            //Form.ActiveForm.Enabled = false;
         }
         private static void RecordsBtn_Click(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace MyGame
 
             //Timer timer = new Timer { Interval = 60 };
             //timer.Start();
-            //timer.Tick += Timer_Tick;
+            //timer.Tick += Timer_Tick;            
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace MyGame
             //Draw();
             //Update();
         }
-
+                
         /// <summary>
         /// Method of drawing and rendering graphics
         /// </summary>
