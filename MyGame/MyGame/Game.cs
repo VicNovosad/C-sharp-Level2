@@ -10,11 +10,12 @@ namespace MyGame
         /// <summary>
         /// Class properties
         /// </summary>
-        private static BufferedGraphicsContext _context;
-        public static BufferedGraphics Buffer;
-        public static List<BaseObject> objsList = new List<BaseObject>();
-        public static List<BaseObject> bulletList = new List<BaseObject>();
-        public static List<BaseObject> asteroidList = new List<BaseObject>();
+        private static BufferedGraphicsContext Context { get; set; }
+        public static BufferedGraphics Buffer { get; set; }
+
+        private static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
+        private static List<BaseObject> BulletList { get; set; } = new List<BaseObject>();
+        private static List<BaseObject> AsteroidList { get; set; } = new List<BaseObject>();
 
 
         public static int Width { get; set; }
@@ -44,13 +45,13 @@ namespace MyGame
             Height = form.ClientSize.Height;
             #endregion
             Load();
-            
+
             Graphics g; // Graphic display device
-            _context = BufferedGraphicsManager.Current; // Provides access to the main graphics context buffer for the current application.
+            Context = BufferedGraphicsManager.Current; // Provides access to the main graphics context buffer for the current application.
             g = form.CreateGraphics();
 
             // Link the buffer in memory with the graphic object to draw in the buffer
-            Buffer = _context.Allocate(g, new Rectangle(0, 0, Width, Height));
+            Buffer = Context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Timer timer = new Timer { Interval = 60 };
             timer.Start();
             timer.Tick += Timer_Tick;
@@ -74,7 +75,7 @@ namespace MyGame
         {
             // Graphics output
             Buffer.Graphics.Clear(Color.Black);
-            foreach (BaseObject obj in objsList)
+            foreach (BaseObject obj in ObjsList)
                 obj.Draw();
             Buffer.Render();
         }
@@ -84,7 +85,7 @@ namespace MyGame
         /// </summary>
         public static void Update()
         {
-            foreach (BaseObject obj in objsList)
+            foreach (BaseObject obj in ObjsList)
                 obj.Update();
         }
 
@@ -113,7 +114,7 @@ namespace MyGame
             int spaceObjVariety = 10; //quantity of space objects pictures
 
             #region Background
-            objsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background"));
+            ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background"));
             #endregion
 
             #region base objects
@@ -123,7 +124,7 @@ namespace MyGame
                 int size = rnd.Next(1, baseObjMaxSize);
                 int spdX = rnd.Next(2, baseObjMaxSpeed);
                 int spdY = 1;
-                objsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+                ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
@@ -133,7 +134,7 @@ namespace MyGame
                 int size = rnd.Next(1, starMaxSize);
                 int spdX = rnd.Next(2, starMaxSpeed);
                 int spdY = 1;
-                objsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+                ObjsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
@@ -143,7 +144,7 @@ namespace MyGame
                 int size = rnd.Next(1, spaceObjMaxSize);
                 int spdX = rnd.Next(2, spaceObjMaxSpeed);
                 int spdY = rnd.Next(1);
-                objsList.Add(new SpaceObjects(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"{rnd.Next(1, spaceObjVariety)}"));
+                ObjsList.Add(new SpaceObjects(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"{rnd.Next(1, spaceObjVariety)}"));
             }
             #endregion
 
@@ -153,7 +154,7 @@ namespace MyGame
                 int size = rnd.Next(1, spaceObjMaxSize);
                 int spdX = rnd.Next(2, planetMaxSpeed);
                 int spdY = rnd.Next(1);
-                objsList.Add(new Planet(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"Planet{i}"));
+                ObjsList.Add(new Planet(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"Planet{i}"));
             }
             #endregion
 
@@ -163,12 +164,12 @@ namespace MyGame
                 int size = rnd.Next(1, sunMaxSize);
                 int spdX = rnd.Next(2, sunMaxSpeed);
                 int spdY = rnd.Next(1);
-                objsList.Add(new Sun(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"sun{i}"));
+                ObjsList.Add(new Sun(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"sun{i}"));
             }
             #endregion
 
             #region SpaceShip
-            objsList.Add(new SpaceShip(new Point(1, Height / 2 - 65), new Point(1, 1), new Size(1, 1), "SpaceShip"));
+            ObjsList.Add(new SpaceShip(new Point(1, Height / 2 - 65), new Point(1, 1), new Size(1, 1), "SpaceShip"));
             #endregion
         }
     }

@@ -38,11 +38,15 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-                // Create Point (upper-left corner of image)
-                Point ulCorner = Position;
+            // Create Point (upper-left corner of image)
+            Point ulCorner = Position;
 
-                // Draw image to screen
+            // Draw image to screen
+            if (Program.FormNumber == 1)
+                SplashScreen.Buffer.Graphics.DrawImage(Img, ulCorner);
+            else if (Program.FormNumber == 2)
                 Game.Buffer.Graphics.DrawImage(Img, ulCorner);
+
         }
 
         /// <summary>
