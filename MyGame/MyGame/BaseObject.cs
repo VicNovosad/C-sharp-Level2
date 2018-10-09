@@ -32,11 +32,7 @@ namespace MyGame
         /// </summary>
         public virtual void Draw()
         {
-            if (Program.FormNumber == 1)
-                SplashScreen.Buffer.Graphics.DrawEllipse(Pens.White, Position.X, Position.Y, Size.Width, Size.Height);
-            else if (Program.FormNumber == 2)
                 Game.Buffer.Graphics.DrawEllipse(Pens.White, Position.X, Position.Y, Size.Width, Size.Height);
-
         }
 
         /// <summary>

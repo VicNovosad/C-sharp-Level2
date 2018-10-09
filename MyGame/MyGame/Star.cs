@@ -28,20 +28,10 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-            if (Program.FormNumber == 1)
-            {
-                SplashScreen.Buffer.Graphics.DrawLine(Pens.White, Position.X, Position.Y, Position.X + Size.Width, Position.Y + Size.Height);
-                SplashScreen.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width, Position.Y, Position.X, Position.Y + Size.Height);
-                SplashScreen.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width / 2, Position.Y - Size.Width / 6, Position.X + Size.Width / 2, Position.Y + Size.Height + Size.Height / 5);
-                SplashScreen.Buffer.Graphics.DrawLine(Pens.White, Position.X - Size.Width / 6, Position.Y + Size.Height / 2, Position.X + Size.Width + Size.Width / 6, Position.Y + Size.Height / 2);
-            }
-            else if (Program.FormNumber == 2)
-            {
-                Game.Buffer.Graphics.DrawLine(Pens.White, Position.X, Position.Y, Position.X + Size.Width, Position.Y + Size.Height);
-                Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width, Position.Y, Position.X, Position.Y + Size.Height);
-                Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width / 2, Position.Y - Size.Width / 6, Position.X + Size.Width / 2, Position.Y + Size.Height + Size.Height / 5);
-                Game.Buffer.Graphics.DrawLine(Pens.White, Position.X - Size.Width / 6, Position.Y + Size.Height / 2, Position.X + Size.Width + Size.Width / 6, Position.Y + Size.Height / 2);
-            }
+            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X, Position.Y, Position.X + Size.Width, Position.Y + Size.Height);
+            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width, Position.Y, Position.X, Position.Y + Size.Height);
+            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width / 2, Position.Y - Size.Width / 6, Position.X + Size.Width / 2, Position.Y + Size.Height + Size.Height / 5);
+            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X - Size.Width / 6, Position.Y + Size.Height / 2, Position.X + Size.Width + Size.Width / 6, Position.Y + Size.Height / 2);
 
         }
 

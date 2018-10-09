@@ -10,11 +10,15 @@ namespace MyGame
         /// <summary>
         /// Class properties
         /// </summary>
-        private static BufferedGraphicsContext Context { get; set; }
+        public static BufferedGraphicsContext Context { get; set; }
         public static BufferedGraphics Buffer { get; set; }
 
         public static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
-        private static Random rnd = new Random();
+        //private static Backpic Back { get; set; }
+        //private static Image Img { get; set; }
+
+
+        //private static Random rnd = new Random();
 
         #region properties
         public static int Width { get; set; }
@@ -76,34 +80,34 @@ namespace MyGame
         //    form.Controls.Add(exitBtn);
         //}
 
-        private static void StartBtn_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Start (need to close currnt form)");
+        //private static void StartBtn_Click(object sender, EventArgs e)
+        //{
+        //    //MessageBox.Show("Start (need to close currnt form)");
 
-            Buffer.Graphics.Clear(Color.Black);
-            Form.ActiveForm.Enabled = false;
-            Form.ActiveForm.Visible = false;
-            //Form.ActiveForm.Close();
+        //    Buffer.Graphics.Clear(Color.Black);
+        //    Form.ActiveForm.Enabled = false;
+        //    Form.ActiveForm.Visible = false;
+        //    //Form.ActiveForm.Close();
 
-            Form form = new Form();
-            form.Name = "Game";
-            form.Text = "Asteroids";
-            form.Width = Width;
-            form.Height = Height;
-            form.StartPosition = FormStartPosition.CenterScreen;
-            Game.Init(form);
-            form.Show();
-            Game.Draw();
+        //    Form form = new Form();
+        //    form.Name = "Game";
+        //    form.Text = "Asteroids";
+        //    form.Width = Width;
+        //    form.Height = Height;
+        //    form.StartPosition = FormStartPosition.CenterScreen;
+        //    Game.Init(form);
+        //    form.Show();
+        //    Game.Draw();
 
-        }
-        private static void RecordsBtn_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Records results");
-        }
-        private static void ExitBtn_Click(object sender, EventArgs e)
-        {
-            if (Application.MessageLoop) Application.Exit(); else Environment.Exit(1);
-        }
+        //}
+        //private static void RecordsBtn_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("Records results");
+        //}
+        //private static void ExitBtn_Click(object sender, EventArgs e)
+        //{
+        //    if (Application.MessageLoop) Application.Exit(); else Environment.Exit(1);
+        //}
         #endregion
 
         /// <summary>
@@ -115,16 +119,18 @@ namespace MyGame
             Width = form.ClientSize.Width;
             Height = form.ClientSize.Height;
 
+            form.BackColor = System.Drawing.Color.Black;
+
             Size btnSize = new Size(290, 46);
             Point center = new Point(form.Width / 2, form.Height / 2);
             Size textSize = new Size(250, 46);
 
-            startBtn = ButtonInit("Start", btnSize, new Point(center.X - btnSize.Width / 2, center.Y - 100), form, new EventHandler(StartGame));
-            recordsBtn = ButtonInit("Record", btnSize, new Point(center.X - btnSize.Width / 2, center.Y - 50), form, new EventHandler(RecordDesk));
-            exitBtn = ButtonInit("Exit", btnSize, new Point(center.X - btnSize.Width / 2, center.Y), form, new EventHandler(ExitGame));
+            startBtn = ButtonInit("Start", btnSize, new Point(Width - btnSize.Width - 10, 15), form, new EventHandler(StartGame));
+            recordsBtn = ButtonInit("Record", btnSize, new Point(Width - btnSize.Width - 10, btnSize.Height + 25), form, new EventHandler(RecordDesk));
+            exitBtn = ButtonInit("Exit", btnSize, new Point(Width - btnSize.Width - 10, btnSize.Height * 2 + 35), form, new EventHandler(ExitGame));
 
             //sign = LabelInit(new Point(center.X - btnSize.Width / 2, center.Y + 350), btnSize, "(c) 2018 created by Vic Novosad", form);
-            sign = LabelInit(new Point(Width - textSize.Width, Height - textSize.Height - 10), btnSize, "(c) 2018 created by Vic Novosad", form);
+            sign = LabelInit(new Point(Width - textSize.Width, Height - textSize.Height - 10), btnSize, "2018, created by Vic Novosad", form);
 
             // Create an object (drawing surface) and associate it with a form.
             // Graphic display device
@@ -140,9 +146,12 @@ namespace MyGame
 
             Load();
 
-            Timer timer = new Timer { Interval = 60 };
-            timer.Start();
-            timer.Tick += Timer_Tick;
+            Game.Init(Program.form);
+            Game.Draw();
+
+            //Timer timer = new Timer { Interval = 1000 };
+            //timer.Start();
+            //timer.Tick += Timer_Tick;
         }
 
         /// <summary>
@@ -208,10 +217,14 @@ namespace MyGame
 
         private static void StartGame(object sender, EventArgs e)
         {
-            Program.FormNumber = 2;
-            Program.form.Controls.Clear();
+            //Program.FormNumber = 2;
+            //Program.form.Controls.Clear();
             Game.Init(Program.form);
             Game.Draw();
+
+            Timer timer = new Timer { Interval = 1000 };
+            timer.Start();
+            timer.Tick += Timer_Tick;
         }
 
         private static void RecordDesk(object sender, EventArgs e)
@@ -230,10 +243,11 @@ namespace MyGame
         public static void Draw()
         {
             // Graphics output
-            Buffer.Graphics.Clear(BackColor);
-            foreach (BaseObject obj in ObjsList)
-                obj.Draw();
-            Buffer.Render();
+            //foreach (BaseObject obj in ObjsList)
+            //    obj.Draw();
+            //Buffer.Graphics.Clear(BackColor);
+            //Back.Draw();
+            //Buffer.Render();
         }
 
         /// <summary>
@@ -241,31 +255,14 @@ namespace MyGame
         /// </summary>
         public static void Update()
         {
-            foreach (BaseObject obj in ObjsList)
-                obj.Update();
+            //foreach (BaseObject obj in ObjsList)
+            //    obj.Update();
         }
 
         public static void Load()
         {
-
-            #region Background
-            ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background2"));
-            #endregion
-
-            //#region base objects
-
-            //int baseObjQty = 20;
-            //int baseObjMaxSize = 20;
-            //int baseObjMaxSpeed = 10;
-
-            //for (int i = 0; i < baseObjQty; i++)
-            //{
-            //    int size = rnd.Next(1, baseObjMaxSize);
-            //    int spdX = rnd.Next(2, baseObjMaxSpeed);
-            //    int spdY = 1;
-            //    ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
-            //}
-            //#endregion
+            // Background picture
+            //Back = new Backpic("Background2");
         }
     }
 }

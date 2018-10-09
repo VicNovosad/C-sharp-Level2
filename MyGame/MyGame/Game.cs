@@ -55,9 +55,9 @@ namespace MyGame
 
             Load();
 
-            Timer timer = new Timer { Interval = 60 };
-            timer.Start();
-            timer.Tick += Timer_Tick;
+            //Timer timer = new Timer { Interval = 60 };
+            //timer.Start();
+            //timer.Tick += Timer_Tick;
         }
 
         /// <summary>

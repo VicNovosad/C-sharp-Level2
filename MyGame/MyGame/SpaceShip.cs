@@ -50,10 +50,7 @@ namespace MyGame
             // Create Point (upper-left corner of image)
             Point ulCorner = Position;
             // Draw image to screen
-            if (Program.FormNumber == 1)
-                SplashScreen.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
-            else if (Program.FormNumber == 2)
-                Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
+            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
 
         }
 

@@ -42,10 +42,7 @@ namespace MyGame
             Point ulCorner = Position;
 
             // Draw image to screen
-            if (Program.FormNumber == 1)
-                SplashScreen.Buffer.Graphics.DrawImage(Img, ulCorner);
-            else if (Program.FormNumber == 2)
-                Game.Buffer.Graphics.DrawImage(Img, ulCorner);
+            Game.Buffer.Graphics.DrawImage(Img, ulCorner);
 
         }
 
