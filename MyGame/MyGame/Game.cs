@@ -24,7 +24,7 @@ namespace MyGame
 
         private static Random rnd = new Random();
 
-        private static bool GameStart { get; set; } = false;
+        
 
         /// <summary>
         /// Constructor for static fields
@@ -88,7 +88,7 @@ namespace MyGame
             timer.Start();
             timer.Tick += Timer_Tick;
 
-            if (GameStart == true)
+            if (Program.GameStart == true)
             {
                 timer.Interval = 60;
                 Load();
@@ -252,15 +252,15 @@ namespace MyGame
             }
             #endregion
 
-            //#region stars
-            //for (int i = 0; i < starQty; i++)
-            //{
-            //    int size = rnd.Next(1, starMaxSize);
-            //    int spdX = rnd.Next(2, starMaxSpeed);
-            //    int spdY = 1;
-            //    ObjsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
-            //}
-            //#endregion
+            #region stars
+            for (int i = 0; i < starQty; i++)
+            {
+                int size = rnd.Next(1, starMaxSize);
+                int spdX = rnd.Next(2, starMaxSpeed);
+                int spdY = 1;
+                ObjsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+            }
+            #endregion
 
             //#region SpaceObjects
             //for (int i = 1; i <= spaceObjQty; i++)
@@ -353,7 +353,7 @@ namespace MyGame
         {
             //Program.FormNumber = 2;
             //Program.form.Controls.Clear();
-            GameStart = true;
+            Program.GameStart = true;
 
             ObjsList.Clear();
             Game.Init(Program.form);

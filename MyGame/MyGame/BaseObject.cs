@@ -40,8 +40,17 @@ namespace MyGame
         /// </summary>
         public virtual void Update()
         {
-            Position.X = Position.X - Direction.X;
-            if (Position.X < 0) Position.X = Game.Width + Size.Width;
+            if (Program.GameStart == true)
+            {
+                Position.X = Position.X - Direction.X;
+                if (Position.X < 0) Position.X = Game.Width + Size.Width;
+            }
+            else
+            {
+
+
+
+            }
         }
     }
 }
