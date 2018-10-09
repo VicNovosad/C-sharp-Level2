@@ -37,21 +37,24 @@ namespace MyGame
         public static void Init(Form form)
         {
             // Create an object (drawing surface) and associate it with a form.
-            #region size of the graphics form
-            // Remember the size of the form
-            //Width = form.Width;
-            //Height = form.Height;
-            Width = form.ClientSize.Width;
-            Height = form.ClientSize.Height;
-            #endregion
-            Load();
+            // Graphic display device
+            Graphics g;
 
-            Graphics g; // Graphic display device
-            Context = BufferedGraphicsManager.Current; // Provides access to the main graphics context buffer for the current application.
+            // Provides access to the main graphics context buffer for the current application.
+            Context = BufferedGraphicsManager.Current;
+            
             g = form.CreateGraphics();
+
+            // Remember the size of the form
+            Width = form.Width;
+            Height = form.Height;
+
 
             // Link the buffer in memory with the graphic object to draw in the buffer
             Buffer = Context.Allocate(g, new Rectangle(0, 0, Width, Height));
+
+            Load();
+
             Timer timer = new Timer { Interval = 60 };
             timer.Start();
             timer.Tick += Timer_Tick;
@@ -94,6 +97,7 @@ namespace MyGame
         /// </summary>
         public static void Load()
         {
+            #region region properties
             int baseObjQty = 10;
             int starQty = 20;
             int spaceObjQty = 20;
@@ -112,13 +116,13 @@ namespace MyGame
             int sunMaxSpeed = 5;
 
             int spaceObjVariety = 10; //quantity of space objects pictures
+            #endregion
 
             #region Background
             ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background"));
             #endregion
 
             #region base objects
-
             for (int i = 0; i < baseObjQty; i++)
             {
                 int size = rnd.Next(1, baseObjMaxSize);

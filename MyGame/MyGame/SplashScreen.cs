@@ -247,24 +247,25 @@ namespace MyGame
 
         public static void Load()
         {
-            int baseObjQty = 20;
-            int baseObjMaxSize = 20;
-            int baseObjMaxSpeed = 10;
 
             #region Background
             ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background2"));
             #endregion
 
-            #region base objects
+            //#region base objects
 
-            for (int i = 0; i < baseObjQty; i++)
-            {
-                int size = rnd.Next(1, baseObjMaxSize);
-                int spdX = rnd.Next(2, baseObjMaxSpeed);
-                int spdY = 1;
-                ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
-            }
-            #endregion
+            //int baseObjQty = 20;
+            //int baseObjMaxSize = 20;
+            //int baseObjMaxSpeed = 10;
+
+            //for (int i = 0; i < baseObjQty; i++)
+            //{
+            //    int size = rnd.Next(1, baseObjMaxSize);
+            //    int spdX = rnd.Next(2, baseObjMaxSpeed);
+            //    int spdY = 1;
+            //    ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+            //}
+            //#endregion
         }
     }
 }

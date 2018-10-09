@@ -23,7 +23,7 @@ namespace MyGame
             //SplashScreen.AddButton(form);
             FormNumber = 1;
             form.Show();
-            //SplashScreen.Draw();
+            SplashScreen.Draw();
             Application.Run(form);
 
             #region old call game form
