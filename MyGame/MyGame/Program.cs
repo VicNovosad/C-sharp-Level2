@@ -7,8 +7,9 @@ namespace MyGame
     class Program
     {
         public static Form form;
-        public static int FormNumber;
-
+        public static int ScreenNumber = 1;
+        public static int Width = 1440;
+        public static int Height = 900;
 
         /// <summary>
         /// Point of the entrance
@@ -16,28 +17,20 @@ namespace MyGame
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            form = CreateForm(1440, 900);
-            form.StartPosition = FormStartPosition.CenterScreen;
-            //splashScreen.MaximizeBox = false;
-            SplashScreen.Init(form);
-            //SplashScreen.AddButton(form);
-            FormNumber = 1;
-            form.Show();
-            SplashScreen.Draw();
-            Application.Run(form);
-
-            #region old call game form
-            //Form form = new Form();
-            //form.Name = "Game";
-            //form.Text = "Asteroids";
+            form = CreateForm(Width, Height);
             //form.Width = Width;
             //form.Height = Height;
-            //form.StartPosition = FormStartPosition.CenterScreen;
-            //Game.Init(form);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.Name = "Game";
+            form.Text = "Asteroids";
+            //splashScreen.MaximizeBox = false;
+            //SplashScreen.Init(form);
             //form.Show();
-            //Game.Draw();
-            //Application.Run(form);
-            #endregion
+            //SplashScreen.Draw();
+            Game.Init(form);
+            form.Show();
+            Game.Draw();
+            Application.Run(form);
         }
 
         /// <summary>
