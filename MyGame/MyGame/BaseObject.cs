@@ -140,30 +140,30 @@ namespace MyGame
         /// <param name="size"></param>
         /// <returns></returns>
         private static Pen RandomColor(int size)
+        {
+            int rndCol;
+            if (size > 2) rndCol = rnd.Next(3, 7);
+            else rndCol = rnd.Next(0, 7);
+            switch (rndCol)
             {
-                int rndCol;
-                if (size > 2) rndCol = rnd.Next(3, 7);
-                else rndCol = rnd.Next(0, 7);
-                switch (rndCol)
-                {
-                    case 0:
-                        return Pens.Blue;
-                    case 1:
-                        return Pens.Red;
-                    case 2:
-                        return Pens.Green;
-                    case 3:
-                        return Pens.Cyan;
-                    case 4:
-                        return Pens.LightSteelBlue;
-                    case 5:
-                        return Pens.Yellow;
-                    case 6:
-                        return Pens.LightBlue;
-                    default:
-                        return Pens.LightGray;
-                }
+                case 0:
+                    return Pens.Blue;
+                case 1:
+                    return Pens.Red;
+                case 2:
+                    return Pens.Green;
+                case 3:
+                    return Pens.Cyan;
+                case 4:
+                    return Pens.LightSteelBlue;
+                case 5:
+                    return Pens.Yellow;
+                case 6:
+                    return Pens.LightBlue;
+                default:
+                    return Pens.LightGray;
             }
+        }
 
     }
 }

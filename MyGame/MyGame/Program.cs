@@ -29,6 +29,7 @@ namespace MyGame
             //form.Show();
             //SplashScreen.Draw();
             Game.Init(form);
+            Game.GraphicsInit(form);
             form.Show();
             Game.Draw();
             Application.Run(form);
