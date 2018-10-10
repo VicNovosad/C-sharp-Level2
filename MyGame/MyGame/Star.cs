@@ -28,21 +28,13 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X, Position.Y, Position.X + Size.Width, Position.Y + Size.Height);
-            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width, Position.Y, Position.X, Position.Y + Size.Height);
-            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X + Size.Width / 2, Position.Y - Size.Width / 6, Position.X + Size.Width / 2, Position.Y + Size.Height + Size.Height / 5);
-            Game.Buffer.Graphics.DrawLine(Pens.White, Position.X - Size.Width / 6, Position.Y + Size.Height / 2, Position.X + Size.Width + Size.Width / 6, Position.Y + Size.Height / 2);
+            Game.Buffer.Graphics.DrawLine(pen, Pos.X, Pos.Y, Pos.X + Size.Width, Pos.Y + Size.Height);
+            Game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width, Pos.Y, Pos.X, Pos.Y + Size.Height);
+            Game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width / 2, Pos.Y - Size.Width / 6, Pos.X + Size.Width / 2, Pos.Y + Size.Height + Size.Height / 5);
+            Game.Buffer.Graphics.DrawLine(pen, Pos.X - Size.Width / 6, Pos.Y + Size.Height / 2, Pos.X + Size.Width + Size.Width / 6, Pos.Y + Size.Height / 2);
 
         }
 
-        /// <summary>
-        /// Update of the current object
-        /// </summary>
-        public override void Update()
-        {
-            Position.X = Position.X - Direction.X;
-            if (Position.X < 0) Position.X = Game.Width + Size.Width;
-        }
     }
 
 

@@ -48,7 +48,7 @@ namespace MyGame
         public override void Draw()
         {
             // Create Point (upper-left corner of image)
-            Point ulCorner = Position;
+            Point ulCorner = Pos;
             // Draw image to screen
             Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
 

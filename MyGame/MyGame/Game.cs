@@ -38,6 +38,7 @@ namespace MyGame
         private static Button recordsBtn;
         private static Button exitBtn;
 
+        private static Timer timer = new Timer();
         static Label sign;
         #endregion
 
@@ -84,15 +85,12 @@ namespace MyGame
             // Link the buffer in memory with the graphic object to draw in the buffer
             Buffer = Context.Allocate(g, new Rectangle(0, 0, Width, Height));
 
-            Timer timer = new Timer { Interval = 100 };
+            timer.Interval = 4;
             timer.Start();
             timer.Tick += Timer_Tick;
 
             if (Program.GameStart == true)
-            {
-                timer.Interval = 60;
                 Load();
-            }
             else PreLoad();
 
 
@@ -137,27 +135,27 @@ namespace MyGame
         {
             #region region properties
             int baseObjQty = 10;
-            int starQty = 20;
-            int spaceObjQty = 20;
+            int starQty = 25;
+            int spaceObjQty = 10;
             int planetQty = 7;
             int sunQty = 5;
 
             int baseObjMaxSize = 5;
             int starMaxSize = 5;
-            int spaceObjMaxSize = 6;
-            int sunMaxSize = 6;
+            int spaceObjMaxSize = 1;
+            int sunMaxSize = 1;
 
-            int baseObjMaxSpeed = 5;
+            int baseObjMaxSpeed = 4;
             int starMaxSpeed = 3;
             int spaceObjMaxSpeed = 6;
-            int planetMaxSpeed = 6;
-            int sunMaxSpeed = 5;
+            int planetMaxSpeed = 7;
+            int sunMaxSpeed = 7;
 
             int spaceObjVariety = 10; //quantity of space objects pictures
             #endregion
 
             #region Background
-            ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background"));
+            ObjsList.Add(new Background("Background"));
             #endregion
 
             #region base objects
@@ -218,8 +216,8 @@ namespace MyGame
         public static void PreLoad()
         {
             #region region properties
-            int baseObjQty = 10;
-            int starQty = 20;
+            int baseObjQty = 20;
+            int starQty = 40;
             int spaceObjQty = 20;
             int planetQty = 7;
             int sunQty = 5;
@@ -230,8 +228,8 @@ namespace MyGame
             int sunMaxSize = 6;
 
             int baseObjMaxSpeed = 5;
-            int starMaxSpeed = 3;
-            int spaceObjMaxSpeed = 6;
+            int starMaxSpeed = 7;
+            int spaceObjMaxSpeed = 10;
             int planetMaxSpeed = 6;
             int sunMaxSpeed = 5;
 
@@ -239,16 +237,16 @@ namespace MyGame
             #endregion
 
             #region Background
-            ObjsList.Add(new Background(new Point(1, 1), new Point(1, 1), new Size(1, 1), "Background2"));
+            ObjsList.Add(new Background("Background2"));
             #endregion
 
             #region base objects
             for (int i = 0; i < baseObjQty; i++)
             {
                 int size = rnd.Next(1, baseObjMaxSize);
-                int spdX = rnd.Next(2, baseObjMaxSpeed);
-                int spdY = 1;
-                ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+                int spdX = rnd.Next(1, baseObjMaxSpeed);
+                int spdY = rnd.Next(1, baseObjMaxSpeed);
+                ObjsList.Add(new BaseObject(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
@@ -256,12 +254,15 @@ namespace MyGame
             for (int i = 0; i < starQty; i++)
             {
                 int size = rnd.Next(1, starMaxSize);
-                int spdX = rnd.Next(2, starMaxSpeed);
-                int spdY = 1;
-                ObjsList.Add(new Star(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+                int spdX = rnd.Next(1, starMaxSpeed);
+                int spdY = rnd.Next(1, starMaxSpeed);
+                ObjsList.Add(new Star(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
+            #region StarShip
+            ObjsList.Add(new Background(new Point(705,460),"StarShip","png"));
+            #endregion
             //#region SpaceObjects
             //for (int i = 1; i <= spaceObjQty; i++)
             //{
@@ -351,17 +352,12 @@ namespace MyGame
 
         private static void StartGame(object sender, EventArgs e)
         {
-            //Program.FormNumber = 2;
-            //Program.form.Controls.Clear();
             Program.GameStart = true;
 
             ObjsList.Clear();
             Game.Init(Program.form);
-            Game.Draw();
+            timer.Interval = 60;
 
-            //Timer timer = new Timer { Interval = 100 };
-            //timer.Start();
-            //timer.Tick += Timer_Tick;
         }
 
         private static void RecordDesk(object sender, EventArgs e)
