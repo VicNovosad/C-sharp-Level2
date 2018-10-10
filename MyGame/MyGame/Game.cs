@@ -13,12 +13,14 @@ namespace MyGame
         private static BufferedGraphicsContext Context { get; set; }
         public static BufferedGraphics Buffer { get; set; }
 
-        private static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
+        public static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
         private static List<BaseObject> BulletList { get; set; } = new List<BaseObject>();
         private static List<BaseObject> AsteroidList { get; set; } = new List<BaseObject>();
 
         private static Random rnd = new Random();
-        private static Timer timer = new Timer();
+        public static Timer timer = new Timer();
+        public static int Width { get; set; }
+        public static int Height { get; set; }
         
 
         #region UI Elements
@@ -28,8 +30,6 @@ namespace MyGame
 
         static Label sign;
 
-        public static int Width { get; set; }
-        public static int Height { get; set; }
 
         private static Color BackColor { get; set; } = Color.Black; // alternative could be DarkSlateGray
         #endregion
@@ -69,6 +69,7 @@ namespace MyGame
             timer.Start();
             timer.Tick += Timer_Tick;
 
+            SplashScreen.Load(form);
             LoadSplashScreen();
         }
 

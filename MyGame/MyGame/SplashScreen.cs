@@ -5,20 +5,15 @@ using System.Drawing;
 
 namespace MyGame
 {
-
-
     class SplashScreen
     {
-        public static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
-
         private static Random rnd = new Random();
-        private static Timer timer = new Timer();
-
+        //private static Timer timer = new Timer();
 
         /// <summary>
         /// Constructor for SplashScreen
         /// </summary>
-        public SplashScreen(Form form)
+        public SplashScreen()
         {
         }
 
@@ -26,7 +21,7 @@ namespace MyGame
         /// Initialization method
         /// </summary>
         /// <param name="form"></param>
-        public void Init(Form form)
+        public void Init()
         {
         }
 
@@ -55,7 +50,7 @@ namespace MyGame
         {
         }
 
-        public static void Load()
+        public static void Load(Form form)
         {
             #region region properties
             int baseObjQty = 20;
@@ -79,7 +74,7 @@ namespace MyGame
             #endregion
 
             #region Background
-            ObjsList.Add(new Background("Background2"));
+            Game.ObjsList.Add(new Background("Background2"));
             #endregion
 
             #region base objects
@@ -88,7 +83,7 @@ namespace MyGame
                 int size = rnd.Next(1, baseObjMaxSize);
                 int spdX = rnd.Next(1, baseObjMaxSpeed);
                 int spdY = rnd.Next(1, baseObjMaxSpeed);
-                ObjsList.Add(new BaseObject(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
+                Game.ObjsList.Add(new BaseObject(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
@@ -98,12 +93,12 @@ namespace MyGame
                 int size = rnd.Next(1, starMaxSize);
                 int spdX = rnd.Next(1, starMaxSpeed);
                 int spdY = rnd.Next(1, starMaxSpeed);
-                ObjsList.Add(new Star(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
+                Game.ObjsList.Add(new Star(new Point(rnd.Next(290, 300), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
             #region StarShip
-            ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png"));
+            Game.ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png"));
             #endregion
 
             //#region SpaceObjects
