@@ -5,7 +5,7 @@ using System.Drawing;
 
 namespace MyGame
 {
-    static class Game
+    class Game
     {
         /// <summary>
         /// Class properties
@@ -17,32 +17,29 @@ namespace MyGame
         private static List<BaseObject> BulletList { get; set; } = new List<BaseObject>();
         private static List<BaseObject> AsteroidList { get; set; } = new List<BaseObject>();
 
-
-        public static int Width { get; set; }
-        public static int Height { get; set; }
-        private static Color BackColor { get; set; } = Color.Black; // DarkSlateGray
-
         private static Random rnd = new Random();
-
+        private static Timer timer = new Timer();
         
-
-        /// <summary>
-        /// Constructor for static fields
-        /// </summary>
-        static Game()
-        {
-        }
 
         #region UI Elements
         private static Button startBtn;
         private static Button recordsBtn;
         private static Button exitBtn;
 
-        private static Timer timer = new Timer();
         static Label sign;
+
+        public static int Width { get; set; }
+        public static int Height { get; set; }
+
+        private static Color BackColor { get; set; } = Color.Black; // alternative could be DarkSlateGray
         #endregion
 
-
+        /// <summary>
+        /// Constructor for Game class
+        /// </summary>
+        public Game()
+        {
+        }
 
         /// <summary>
         /// Initialization method
@@ -57,43 +54,40 @@ namespace MyGame
             form.BackColor = BackColor;
 
             Size btnSize = new Size(290, 46);
-            Point center = new Point(form.Width / 2, form.Height / 2);
+            Point btnsPos = new Point(Width - btnSize.Width - 20, Height - btnSize.Height - 25);
             Size textSize = new Size(160, 30);
 
-            startBtn = ButtonInit("Start", btnSize, new Point(Width - btnSize.Width - 20, Height - btnSize.Height * 3 - 45), form, new EventHandler(StartGame));
-            recordsBtn = ButtonInit("Record", btnSize, new Point(Width - btnSize.Width - 20, Height - btnSize.Height * 2 - 35), form, new EventHandler(RecordDesk));
-            exitBtn = ButtonInit("Exit", btnSize, new Point(Width - btnSize.Width - 20, Height - btnSize.Height - 25), form, new EventHandler(ExitGame));
+            startBtn = ButtonInit("Start", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height * 2 - 20), form, new EventHandler(StartGame));
+            recordsBtn = ButtonInit("Record", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height - 10), form, new EventHandler(RecordDesk));
+            exitBtn = ButtonInit("Exit", btnSize, btnsPos, form, new EventHandler(ExitGame));
 
             //sign = LabelInit(new Point(center.X - btnSize.Width / 2, center.Y + 350), btnSize, "(c) 2018 created by Vic Novosad", form);
             sign = LabelInit(new Point(20, Height - textSize.Height - 10), textSize, "2018, created by Vic Novosad", form);
             #endregion
 
-            // Create an object (drawing surface) and associate it with a form.
-            // Graphic display device
-            Graphics g;
-
-            // Provides access to the main graphics context buffer for the current application.
-            Context = BufferedGraphicsManager.Current;
-            
-            g = form.CreateGraphics();
-
-            // Remember the size of the form
-            Width = form.Width;
-            Height = form.Height;
-
-
-            // Link the buffer in memory with the graphic object to draw in the buffer
-            Buffer = Context.Allocate(g, new Rectangle(0, 0, Width, Height));
-
-            timer.Interval = 4;
+            timer.Interval = 24;
             timer.Start();
             timer.Tick += Timer_Tick;
 
-            if (Program.GameStart == true)
-                Load();
-            else PreLoad();
+            LoadSplashScreen();
+        }
 
+        /// <summary>
+        /// Graphics Initialization
+        /// </summary>
+        /// <param name="form"></param>
+        public static void GraphicsInit(Form form)
+        {
+            // Create an object (drawing surface) and associate it with a form.
+            // Graphic display device
+            Graphics Graph;
+            // Provides access to the main graphics context buffer for the current application.
+            Context = BufferedGraphicsManager.Current;
 
+            Graph = form.CreateGraphics();
+
+            // Link the buffer in memory with the graphic object to draw in the buffer
+            Buffer = Context.Allocate(Graph, new Rectangle(0, 0, Width, Height));
         }
 
         /// <summary>
@@ -213,7 +207,7 @@ namespace MyGame
             #endregion
         }
 
-        public static void PreLoad()
+        public static void LoadSplashScreen()
         {
             #region region properties
             int baseObjQty = 20;
@@ -261,7 +255,7 @@ namespace MyGame
             #endregion
 
             #region StarShip
-            ObjsList.Add(new Background(new Point(705,460),"StarShip","png"));
+            ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png"));
             #endregion
             //#region SpaceObjects
             //for (int i = 1; i <= spaceObjQty; i++)
@@ -354,9 +348,10 @@ namespace MyGame
         {
             Program.GameStart = true;
 
+            //Game.Init(Program.form);
             ObjsList.Clear();
-            Game.Init(Program.form);
-            timer.Interval = 300;
+            timer.Interval = 60;
+            Load();
 
         }
 
