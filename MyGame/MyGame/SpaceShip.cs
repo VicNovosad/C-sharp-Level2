@@ -14,6 +14,7 @@ namespace MyGame
     {
         private string imageName;
         private int shipStage = 0;
+        //private Image img;
         private const int imgQty = 4; // Quantity of SpaceShip sprites
         private Image[] ImgArr { get; set; } = new Image[imgQty];
 
@@ -29,6 +30,7 @@ namespace MyGame
             this.imageName = imageName;
             try
             {
+                // Creating an image
                 for (int i = 0; i < imgQty; i++)
                 {
                     ImgArr[i] = Image.FromFile($"..\\..\\{imageName}" + $"{i}" + ".png");
@@ -45,8 +47,11 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
+            // Create Point (upper-left corner of image)
+            Point ulCorner = Pos;
             // Draw image to screen
-            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], Pos);
+            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
+
         }
 
         /// <summary>
@@ -54,8 +59,9 @@ namespace MyGame
         /// </summary>
         public override void Update()
         {
-            shipStage = (shipStage < 3) ? shipStage++ : 0;
-            Pos.X++;
+            if (shipStage < 3) shipStage++;
+            else shipStage = 0;
         }
     }
 }
+
