@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Employees
 {
     /// <summary>
-    /// Класс сотрудников с почасовой оплатой труда, производный от класса Employee
+    /// A class of hourly wage employees derived from the Employee class
     /// </summary>
     class EmployeePerHourSalary : Employee
     {
@@ -15,14 +15,14 @@ namespace Employees
 
         //public double SalaryPerHour { get { return salaryPerHour; }set { salaryPerHour = value; } }
         /// <summary>
-        /// Сотрудник с почасовой оплатой, конструктор
+        /// Constructor for Employee with hourly pay class
         /// </summary>
-        /// <param name="name">Имя</param>
-        /// <param name="surname">Фамилия</param>
-        /// <param name="sex">Пол</param>
-        /// <param name="position">Должность</param>
-        /// <param name="age">Возраст (полных лет)</param>
-        /// <param name="salary">Зарплата сотрудника в час</param>
+        /// <param name="name">Name</param>
+        /// <param name="surname">LastName</param>
+        /// <param name="sex">Gender</param>
+        /// <param name="position">Position</param>
+        /// <param name="age">Age (full years)</param>
+        /// <param name="salary">Employee salary per hour</param>
         public EmployeePerHourSalary(string name, string surname, string sex, string position, int age, double salaryPerHour) :
             base(name, surname, sex, position, age)
         {
@@ -32,7 +32,7 @@ namespace Employees
         public EmployeePerHourSalary() { }
 
         /// <summary>
-        /// Расчет среднемесячной зарплаты
+        /// Calculation of the average monthly salary
         /// </summary>
         /// <returns></returns>
         protected override double AvarageMounthSalary()

@@ -9,16 +9,16 @@ using System.Windows.Forms;
 namespace Employees
 {
     /// <summary>
-    /// База данных сотрудников
+    /// Employee Database
     /// </summary>
     class DBEmployee
     {
         internal List<Employee> DB;
 
         /// <summary>
-        /// Конструктор для загрузки базы
+        /// Constructor for loading the DataBase
         /// </summary>
-        /// <param name="db">Листинг сотрудников, Сотрудник содержит поля: Имя, Фамилия, Возраст, Пол, Должность</param>
+        /// <param name="db">Employees Listing, Employee contains the fields: First Name, Last Name, Age, Gender, Position</param>
         public DBEmployee(List<Employee> db)
         {
             this.DB = db;
@@ -28,9 +28,9 @@ namespace Employees
 
 
         /// <summary>
-        /// Метод создания новой базы слотрудников на основе листинга
+        /// The method of creating a new database of employees based on the listing
         /// </summary>
-        /// <param name="count">Количество сотрудников</param>
+        /// <param name="count">The number of employees</param>
         public void CreateDB(int count)
         {
             DB = new List<Employee>();
@@ -68,9 +68,9 @@ namespace Employees
         }
 
         /// <summary>
-        /// Вывод базы сотрудников на печать в текст бокс
+        /// Conclusion of base of employees on the press in the text box
         /// </summary>
-        /// <param name="txtbox">Текст бокс для вывода на печать</param>
+        /// <param name="txtbox">Text box for printing</param>
         public void PrintDB(TextBox txtbox)
         {
             foreach (var emp in DB)
@@ -91,7 +91,7 @@ namespace Employees
         }
 
         /// <summary>
-        ///Сортировка базы 
+        ///Sorting of DataBase
         /// </summary>
         public void DBSort()
         {

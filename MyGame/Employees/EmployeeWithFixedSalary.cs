@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 namespace Employees
 {
     /// <summary>
-    /// Класс сотрудников с фиксированной оплатой труда, производный от класса Employee
+    /// Class of employees with a fixed wage, derived from the class Employee
     /// </summary>
     class EmployeeWithFixedSalary : Employee
     {
         internal double salary;
         /// <summary>
-        /// Сотрудник с фиксированной оплатой, конструктор
+        /// Constructor for class Fixed pay employee
         /// </summary>
-        /// <param name="name">Имя</param>
-        /// <param name="surname">Фамилия</param>
-        /// <param name="sex">Пол</param>
-        /// <param name="position">Должность</param>
-        /// <param name="age">Возраст (полных лет)</param>
-        /// <param name="salary">Зарплата сотрудника</param>
+        /// <param name="name">Name</param>
+        /// <param name="surname">Last Name</param>
+        /// <param name="sex">Gender</param>
+        /// <param name="position">Position</param>
+        /// <param name="age">Age (full years)</param>
+        /// <param name="salary">Employee salary</param>
         public EmployeeWithFixedSalary(string name, string surname, string sex, string position, int age, double salary) : base(name, surname, sex, position, age)
         {
             this.salary = salary;
@@ -28,7 +28,7 @@ namespace Employees
         public EmployeeWithFixedSalary() { }
 
         /// <summary>
-        /// Расчет среднемесячной зарплаты
+        /// Calculation of the average monthly salary
         /// </summary>
         /// <returns></returns>
         protected override double AvarageMounthSalary()

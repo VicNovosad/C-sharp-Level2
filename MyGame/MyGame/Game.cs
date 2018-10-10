@@ -356,7 +356,7 @@ namespace MyGame
 
             ObjsList.Clear();
             Game.Init(Program.form);
-            timer.Interval = 60;
+            timer.Interval = 300;
 
         }
 

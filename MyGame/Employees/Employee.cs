@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Employees
 {
     /// <summary>
-    /// Базовый класс сотрудника
+    /// Employee base class
     /// </summary>
     abstract class Employee : IComparable
     {
@@ -26,13 +26,13 @@ namespace Employees
 
         #endregion
         /// <summary>
-        /// Сотрудник, конструктор
+        /// Constructor of class Employee
         /// </summary>
-        /// <param name="name">Имя</param>
-        /// <param name="surname">Фамилия</param>
-        /// <param name="sex">Пол</param>
-        /// <param name="position">Должность</param>
-        /// <param name="age">Возраст (полных лет)</param>
+        /// <param name="name">Name</param>
+        /// <param name="surname">Last Name</param>
+        /// <param name="sex">Gender</param>
+        /// <param name="position">Position</param>
+        /// <param name="age">Age (full years)</param>
 
         public Employee(string name, string surname, string sex, string position, int age)
         {
