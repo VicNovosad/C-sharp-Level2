@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{34B2234B-CF2C-4D30-B973-CDCCC9AAEFAE}</ProjectGuid>
+    <ProjectGuid>{4776FB55-7B40-48D4-B439-6961AC488733}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MyGame</RootNamespace>
-    <AssemblyName>MyGame</AssemblyName>
+    <RootNamespace>Employees</RootNamespace>
+    <AssemblyName>Employees</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -45,20 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asteroid.cs" />
-    <Compile Include="Background.cs" />
-    <Compile Include="BaseObject.cs" />
-    <Compile Include="Bullet.cs" />
-    <Compile Include="Circle.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Planet.cs" />
+    <Compile Include="DBEmployee.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeePerHourSalary.cs" />
+    <Compile Include="EmployeeWithFixedSalary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpaceObjects.cs" />
-    <Compile Include="SpaceShip.cs" />
-    <Compile Include="SplashScreen.cs" />
-    <Compile Include="Star.cs" />
-    <Compile Include="Sun.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

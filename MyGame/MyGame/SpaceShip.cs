@@ -33,7 +33,7 @@ namespace MyGame
                 // Creating an image
                 for (int i = 0; i < imgQty; i++)
                 {
-                    ImgArr[i] = Image.FromFile($"..\\..\\{imageName}" + $"{i}" + ".png"); 
+                    ImgArr[i] = Image.FromFile($"..\\..\\{imageName}" + $"{i}" + ".png");
                 }
             }
             catch (Exception e)
@@ -48,9 +48,10 @@ namespace MyGame
         public override void Draw()
         {
             // Create Point (upper-left corner of image)
-            Point ulCorner = Position;
+            Point ulCorner = Pos;
             // Draw image to screen
             Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
+
         }
 
         /// <summary>
@@ -63,3 +64,4 @@ namespace MyGame
         }
     }
 }
+
