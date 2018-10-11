@@ -224,7 +224,7 @@ namespace MyGame
         {
             Game.GameStart = true;
             Game.ObjsList.Clear();
-            Game.timer.Interval = 60;
+            Game.timer.Interval = 160;
             Game.Load();
         }
 

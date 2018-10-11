@@ -15,8 +15,8 @@ namespace MyGame
         public static BufferedGraphics Buffer { get; set; }
 
         public static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
-        private static List<BaseObject> BulletList { get; set; } = new List<BaseObject>();
-        private static List<BaseObject> AsteroidList { get; set; } = new List<BaseObject>();
+        public static List<BaseObject> Bullets { get; set; } = new List<BaseObject>();
+        public static List<BaseObject> Asteroids { get; set; } = new List<BaseObject>();
 
         private static Random rnd = new Random();
         public static Timer timer = new Timer();
@@ -89,6 +89,10 @@ namespace MyGame
             Buffer.Graphics.Clear(Color.Black);
             foreach (BaseObject obj in ObjsList)
                 obj.Draw();
+            foreach (BaseObject obj in Asteroids)
+                obj.Draw();
+            foreach (BaseObject obj in Bullets)
+                obj.Draw();
             Buffer.Render();
         }
 
@@ -99,6 +103,11 @@ namespace MyGame
         {
             foreach (BaseObject obj in ObjsList)
                 obj.Update();
+            foreach (BaseObject obj in Asteroids)
+                obj.Update();
+            foreach (BaseObject obj in Bullets)
+                obj.Update();
+
         }
 
         /// <summary>
@@ -106,7 +115,7 @@ namespace MyGame
         /// </summary>
         public static void Load()
         {
-            #region region properties
+            #region Properties (Quantity, Size, Speed)
             int baseObjQty = 10;
             int starQty = 25;
             int spaceObjQty = 10;
@@ -131,7 +140,19 @@ namespace MyGame
             ObjsList.Add(new Background("Background"));
             #endregion
 
-            #region base objects
+            #region Bullets & Asteroids
+
+            Bullets.Add(new Bullet(new Point(0, 200), new Point(3, 0), new Size(6, 2)));
+
+            for (int i = 0; i < baseObjQty; i++)
+            {
+                int r = rnd.Next(5, 50);
+                Asteroids.Add(new Asteroid(new Point(600, rnd.Next(0, Game.Height)), new Point(-r / 5, r), new Size(30, 30)));
+            }
+
+            #endregion
+
+            #region Circle objects
             for (int i = 0; i < baseObjQty; i++)
             {
                 int size = rnd.Next(1, baseObjMaxSize);

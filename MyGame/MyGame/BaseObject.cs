@@ -10,11 +10,15 @@ namespace MyGame
         /// <summary>
         /// class properties
         /// </summary>
-        protected Point StartPos;
-        protected Point Pos;
+        protected Point StartPos { get; set; }
+        public RectangleF TakenPlace { get; internal set; }
+
+        public Point Pos;
         protected Point Dir;
         protected Size Size;
         protected Pen pen;
+        protected Image Img;
+        //public RectangleF TakenPlace;
 
         protected static Random rnd = new Random();
 
@@ -29,6 +33,7 @@ namespace MyGame
         protected BaseObject(Point position, Point direction, Size size) : this(position, direction, size, ChangeDirection())
         {
             this.direction = RandomDirection(Size.Width);
+            //TakenPlace = new RectangleF(Pos, Size);
         }
 
         /// <summary>

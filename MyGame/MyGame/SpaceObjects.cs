@@ -10,7 +10,6 @@ namespace MyGame
     class SpaceObjects : BaseObject
     {
         private string imageName;
-        private Image Img { get; set; }
 
         /// <summary>
         /// Space Objects constructor

@@ -14,7 +14,7 @@ namespace MyGame
     {
         private string imageName;
         private Point position = new Point(1, 1);
-        private Image Img { get; set; }
+        //private Image Img { get; set; }
 
         /// <summary>
         /// Background object with upper-left corner of the screen position witout movement
