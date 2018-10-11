@@ -10,7 +10,6 @@ namespace MyGame
     class SpaceObjects : BaseObject
     {
         private string imageName;
-        private Image Img { get; set; }
 
         /// <summary>
         /// Space Objects constructor
@@ -38,11 +37,12 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-                // Create Point (upper-left corner of image)
-                Point ulCorner = Position;
+            // Create Point (upper-left corner of image)
+            Point ulCorner = Pos;
 
-                // Draw image to screen
-                Game.Buffer.Graphics.DrawImage(Img, ulCorner);
+            // Draw image to screen
+            Game.Buffer.Graphics.DrawImage(Img, ulCorner);
+
         }
 
         /// <summary>
@@ -50,8 +50,8 @@ namespace MyGame
         /// </summary>
         public override void Update()
         {
-            Position.X = Position.X - Direction.X;
-            if (Position.X < -100) Position.X = Game.Width + Size.Width;
+            Pos.X = Pos.X - Dir.X;
+            if (Pos.X < -100) Pos.X = Game.Width + Size.Width;
         }
 
     }
