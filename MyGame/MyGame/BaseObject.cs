@@ -62,7 +62,7 @@ namespace MyGame
         /// </summary>
         public virtual void Update()
         {
-            if (Program.GameStart == true)
+            if (Game.GameStart == true)
             {
                 Pos.X = Pos.X - Dir.X;
                 if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
@@ -92,8 +92,32 @@ namespace MyGame
                     Pos.X = Pos.X + Dir.X;
                     Pos.Y = Pos.Y - Dir.Y;
                     break;
-                default:                    //Right-Down
+                case 4:                     //Right-Down / 2
                     Pos.X = Pos.X + Dir.X;
+                    Pos.Y = Pos.Y + Dir.Y / 2;
+                    break;
+                case 5:                     //Right-Up / 2
+                    Pos.X = Pos.X + Dir.X;
+                    Pos.Y = Pos.Y - Dir.Y / 2;
+                    break;
+                case 6:                     //Right-Down / 2
+                    Pos.X = Pos.X + Dir.X;
+                    Pos.Y = Pos.Y + Dir.Y / 4;
+                    break;
+                case 7:                     //Right-Up / 2
+                    Pos.X = Pos.X + Dir.X;
+                    Pos.Y = Pos.Y - Dir.Y / 4;
+                    break;
+                case 8:                     //Left-Down / 2
+                    Pos.X = Pos.X - Dir.X;
+                    Pos.Y = Pos.Y + Dir.Y / 2;
+                    break;
+                case 9:                     //Right-Down / 2
+                    Pos.X = Pos.X + Dir.X / 4;
+                    Pos.Y = Pos.Y + Dir.Y;
+                    break;
+                default:                    //Right-Down
+                    Pos.X = Pos.X + Dir.X / 2;
                     Pos.Y = Pos.Y + Dir.Y;
                     break;
             }

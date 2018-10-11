@@ -7,11 +7,10 @@ namespace MyGame
     class Program
     {
         public static Form form;
-        public static int ScreenNumber = 1;
         public static int Width = 1440;
         public static int Height = 900;
 
-        public static bool GameStart { get; set; } = false;
+        
         /// <summary>
         /// Point of the entrance
         /// </summary>
