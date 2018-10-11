@@ -86,22 +86,22 @@ namespace MyGame
             #region region properties
             int baseObjQty = 40;
             int starQty = 60;
-            int spaceObjQty = 20;
-            int planetQty = 7;
-            int sunQty = 5;
+            //int spaceObjQty = 20;
+            //int planetQty = 7;
+            //int sunQty = 5;
 
             int baseObjMaxSize = 5;
             int starMaxSize = 5;
-            int spaceObjMaxSize = 6;
-            int sunMaxSize = 6;
+            //int spaceObjMaxSize = 6;
+            //int sunMaxSize = 6;
 
             int baseObjMaxSpeed = 5;
             int starMaxSpeed = 7;
-            int spaceObjMaxSpeed = 10;
-            int planetMaxSpeed = 6;
-            int sunMaxSpeed = 5;
+            //int spaceObjMaxSpeed = 10;
+            //int planetMaxSpeed = 6;
+            //int sunMaxSpeed = 5;
 
-            int spaceObjVariety = 10; //quantity of space objects pictures
+            //int spaceObjVariety = 10; //quantity of space objects pictures
             #endregion
 
             #region Background
@@ -114,7 +114,7 @@ namespace MyGame
                 int size = rnd.Next(1, baseObjMaxSize);
                 int spdX = rnd.Next(1, baseObjMaxSpeed);
                 int spdY = rnd.Next(1, baseObjMaxSpeed);
-                Game.ObjsList.Add(new BaseObject(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size), 1));
+                Game.ObjsList.Add(new Circle(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size), 1));
             }
             #endregion
 

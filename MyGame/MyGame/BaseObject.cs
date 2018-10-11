@@ -5,12 +5,12 @@ namespace MyGame
     /// <summary>
     /// Base Object (Point position(x,y), Point direction(x,y), Size size(x,y))
     /// </summary>
-    class BaseObject
+    abstract class BaseObject
     {
         /// <summary>
         /// class properties
         /// </summary>
-        protected Point StartPos { get; set; }
+        protected Point StartPos;
         protected Point Pos;
         protected Point Dir;
         protected Size Size;
@@ -18,7 +18,7 @@ namespace MyGame
 
         protected static Random rnd = new Random();
 
-        private int direction;
+        protected int direction;
 
         /// <summary>
         /// Base Object Constructor
@@ -26,7 +26,7 @@ namespace MyGame
         /// <param name="position"></param>
         /// <param name="direction"></param>
         /// <param name="size"></param>
-        public BaseObject(Point position, Point direction, Size size) : this(position, direction, size, ChangeDirection())
+        protected BaseObject(Point position, Point direction, Size size) : this(position, direction, size, ChangeDirection())
         {
             this.direction = RandomDirection(Size.Width);
         }
@@ -38,7 +38,7 @@ namespace MyGame
         /// <param name="dir"></param>
         /// <param name="size"></param>
         /// <param name="direction"></param>
-        public BaseObject(Point pos, Point dir, Size size, int direction)
+        protected BaseObject(Point pos, Point dir, Size size, int direction)
         {
             Pos = pos;
             StartPos = pos;
@@ -52,10 +52,7 @@ namespace MyGame
         /// <summary>
         /// Virtual method "Draw"
         /// </summary>
-        public virtual void Draw()
-        {
-            Game.Buffer.Graphics.DrawEllipse(pen, Pos.X, Pos.Y, Size.Width, Size.Height);
-        }
+        public abstract void Draw();
 
         /// <summary>
         /// Virtual method "Update"
@@ -76,7 +73,7 @@ namespace MyGame
         /// <summary>
         /// Splash Screen Objects behaviour
         /// </summary>
-        private void SPObjBehavior()
+        public virtual void SPObjBehavior()
         {
             switch (this.direction)
             {
@@ -131,7 +128,7 @@ namespace MyGame
             }
         }
 
-        private static int ChangeDirection()
+        public static int ChangeDirection()
         {
             return rnd.Next(1, 10);
         }
@@ -141,7 +138,7 @@ namespace MyGame
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private static int RandomDirection(int size)
+        public static int RandomDirection(int size)
         {
             switch (size) 
             {
@@ -163,7 +160,7 @@ namespace MyGame
         /// </summary>
         /// <param name="size"></param>
         /// <returns></returns>
-        private static Pen RandomColor(int size)
+        public static Pen RandomColor(int size)
         {
             int rndCol;
             if (size > 2) rndCol = rnd.Next(3, 7);

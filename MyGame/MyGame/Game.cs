@@ -137,7 +137,7 @@ namespace MyGame
                 int size = rnd.Next(1, baseObjMaxSize);
                 int spdX = rnd.Next(2, baseObjMaxSpeed);
                 int spdY = 1;
-                ObjsList.Add(new BaseObject(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
+                ObjsList.Add(new Circle(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size)));
             }
             #endregion
 
