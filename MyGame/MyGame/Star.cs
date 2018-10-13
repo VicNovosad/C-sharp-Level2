@@ -19,19 +19,19 @@ namespace MyGame
         /// <param name="dir">Direction of the object (Speed and direction)</param>
         /// <param name="size">Size of the object</param>
         /// <param name="imageName"></param>
-        public Star(Point pos, Point dir, Size size) : base(pos, dir, size)
+        public Star(Point pos, Point dir, Size size, Game game) : base(pos, dir, size, game)
         {
         }
 
         /// <summary>
         /// Draw of the current object
         /// </summary>
-        public override void Draw()
+        public override void Draw(Game game)
         {
-            Game.Buffer.Graphics.DrawLine(pen, Pos.X, Pos.Y, Pos.X + Size.Width, Pos.Y + Size.Height);
-            Game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width, Pos.Y, Pos.X, Pos.Y + Size.Height);
-            Game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width / 2, Pos.Y - Size.Width / 6, Pos.X + Size.Width / 2, Pos.Y + Size.Height + Size.Height / 5);
-            Game.Buffer.Graphics.DrawLine(pen, Pos.X - Size.Width / 6, Pos.Y + Size.Height / 2, Pos.X + Size.Width + Size.Width / 6, Pos.Y + Size.Height / 2);
+            game.Buffer.Graphics.DrawLine(pen, Pos.X, Pos.Y, Pos.X + Size.Width, Pos.Y + Size.Height);
+            game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width, Pos.Y, Pos.X, Pos.Y + Size.Height);
+            game.Buffer.Graphics.DrawLine(pen, Pos.X + Size.Width / 2, Pos.Y - Size.Width / 6, Pos.X + Size.Width / 2, Pos.Y + Size.Height + Size.Height / 5);
+            game.Buffer.Graphics.DrawLine(pen, Pos.X - Size.Width / 6, Pos.Y + Size.Height / 2, Pos.X + Size.Width + Size.Width / 6, Pos.Y + Size.Height / 2);
 
         }
 

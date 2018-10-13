@@ -20,7 +20,7 @@ namespace MyGame
         /// Background object with upper-left corner of the screen position witout movement
         /// </summary>
         /// <param name="imageName"></param>
-        public Background(string imageName) : this (new Point(1,1), new Point(1, 1), new Size(1, 1), imageName, "jpg")
+        public Background(string imageName, Game game) : this (new Point(1,1), new Point(1, 1), new Size(1, 1), imageName, "jpg", game)
         {
         }
 
@@ -28,7 +28,7 @@ namespace MyGame
         /// Background object with upper-left corner of the screen position witout movement
         /// </summary>
         /// <param name="imageName"></param>
-        public Background(Point Pos, string imageName, string extension) : this (Pos, new Point(1, 1), new Size(1, 1), imageName, extension)
+        public Background(Point Pos, string imageName, string extension, Game game) : this (Pos, new Point(1, 1), new Size(1, 1), imageName, extension, game)
         {
         }
 
@@ -36,7 +36,7 @@ namespace MyGame
         /// Background object with upper-left corner of the screen position witout movement
         /// </summary>
         /// <param name="imageName"></param>
-        public Background(string imageName, string extension) : this (new Point(1,1), new Point(1, 1), new Size(1, 1), imageName, extension)
+        public Background(string imageName, string extension, Game game) : this (new Point(1,1), new Point(1, 1), new Size(1, 1), imageName, extension, game)
         {
         }
 
@@ -47,7 +47,7 @@ namespace MyGame
         /// <param name="dir">Direction of movement the background in a case you would like to make it not static</param>
         /// <param name="size">Size of the picture</param>
         /// <param name="imageName">Image name without file extention (intended use of "jpg" files)</param>
-        public Background(Point pos, Point dir, Size size, string imageName, string extension) : base(pos, dir, size)
+        public Background(Point pos, Point dir, Size size, string imageName, string extension, Game game) : base(pos, dir, size, game)
         {
             this.imageName = imageName;
 
@@ -65,16 +65,16 @@ namespace MyGame
         /// <summary>
         /// Draw of the current object
         /// </summary>
-        public override void Draw()
+        public override void Draw(Game game)
         {
             Size.Height = Img.Height;
             Size.Width = Img.Width;
             TakenPlace = new RectangleF(Pos, Size);
             // Draw image to screen
-            Game.Buffer.Graphics.DrawImage(Img, TakenPlace);
+            game.Buffer.Graphics.DrawImage(Img, TakenPlace);
         }
 
-        public override void Update()
+        public override void Update(Game game)
         {
         }
     }

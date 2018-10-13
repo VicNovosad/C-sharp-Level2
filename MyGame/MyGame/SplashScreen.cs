@@ -5,20 +5,9 @@ using System.Drawing;
 
 namespace MyGame
 {
-    class SplashScreen
+    class SplashScreen : Game
     {
-        private static Random rnd = new Random();
-
-        #region UI Elements
-        private static Button startBtn;
-        private static Button recordsBtn;
-        private static Button exitBtn;
-
-        static Label sign;
-
-
-        private static Color BackColor { get; set; } = Color.Black; // alternative could be DarkSlateGray
-        #endregion
+        //private Random rnd = new Random();
 
         /// <summary>
         /// Constructor for SplashScreen
@@ -31,57 +20,46 @@ namespace MyGame
         /// Initialization method
         /// </summary>
         /// <param name="form"></param>
-        public static void Init(Form form)
+        public override void Init(Form form)
         {
             #region add UI elements on the form
-            Game.Width = form.ClientSize.Width;
-            Game.Height = form.ClientSize.Height;
+            Width = form.ClientSize.Width;
+            Height = form.ClientSize.Height;
 
             form.BackColor = BackColor;
 
             Size btnSize = new Size(290, 46);
-            Point btnsPos = new Point(Game.Width - btnSize.Width - 20, Game.Height - btnSize.Height - 25);
+            Point btnsPos = new Point(Width - btnSize.Width - 20, Height - btnSize.Height - 25);
             Size textSize = new Size(160, 30);
 
-            startBtn = ButtonInit("Start", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height * 2 - 20), form, new EventHandler(StartGame));
-            recordsBtn = ButtonInit("Record", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height - 10), form, new EventHandler(RecordDesk));
-            exitBtn = ButtonInit("Exit", btnSize, btnsPos, form, new EventHandler(ExitGame));
+            StartBtn = ButtonInit("Start", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height * 2 - 20), form, new EventHandler(StartGame));
+            RecordsBtn = ButtonInit("Record", btnSize, new Point(btnsPos.X, btnsPos.Y - btnSize.Height - 10), form, new EventHandler(RecordDesk));
+            ExitBtn = ButtonInit("Exit", btnSize, btnsPos, form, new EventHandler(ExitGame));
 
             //sign = LabelInit(new Point(center.X - btnSize.Width / 2, center.Y + 350), btnSize, "(c) 2018 created by Vic Novosad", form);
-            sign = LabelInit(new Point(20, Game.Height - textSize.Height - 10), textSize, "2018, created by Vic Novosad", form);
+            Sign = LabelInit(new Point(20, Height - textSize.Height - 10), textSize, "2018, created by Vic Novosad", form);
             #endregion
 
             Load(form);
         }
 
         /// <summary>
-        /// Timer Ticker method 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void Timer_Tick(object sender, EventArgs e)
-        {
-            Draw();
-            Update();
-        }
-
-        /// <summary>
         /// Method of drawing and rendering graphics
         /// </summary>
-        public static void Draw()
-        {
-        }
+        //public void Draw()
+        //{
+        //}
 
         /// <summary>
         /// Updating all graphics objects in objsList
         /// </summary>
-        public static void Update()
+        public override void Update()
         {
-            foreach (BaseObject obj in Game.ObjsList)
-                obj.Update();
+            foreach (BaseObject obj in ObjsList)
+                obj.Update(this);
         }
 
-        public static void Load(Form form)
+        public void Load(Form form)
         {
             #region region properties
             int baseObjQty = 40;
@@ -105,7 +83,7 @@ namespace MyGame
             #endregion
 
             #region Background
-            Game.ObjsList.Add(new Background("Background2"));
+            ObjsList.Add(new Background("Background2", this));
             #endregion
 
             #region base objects
@@ -114,7 +92,7 @@ namespace MyGame
                 int size = rnd.Next(1, baseObjMaxSize);
                 int spdX = rnd.Next(1, baseObjMaxSpeed);
                 int spdY = rnd.Next(1, baseObjMaxSpeed);
-                Game.ObjsList.Add(new Circle(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size), 1));
+                ObjsList.Add(new Circle(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size), 1, this));
             }
             #endregion
 
@@ -124,12 +102,12 @@ namespace MyGame
                 int size = rnd.Next(1, starMaxSize);
                 int spdX = rnd.Next(1, starMaxSpeed);
                 int spdY = rnd.Next(1, starMaxSpeed);
-                Game.ObjsList.Add(new Star(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size)));
+                ObjsList.Add(new Star(new Point(rnd.Next(320, 325), rnd.Next(215, 225)), new Point(spdX, spdY), new Size(size, size), this));
             }
             #endregion
 
             #region StarShip
-            Game.ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png"));
+            ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png", this));
             #endregion
 
             //#region SpaceObjects
@@ -138,7 +116,7 @@ namespace MyGame
             //    int size = rnd.Next(1, spaceObjMaxSize);
             //    int spdX = rnd.Next(2, spaceObjMaxSpeed);
             //    int spdY = rnd.Next(1);
-            //    Game.ObjsList.Add(new SpaceObjects(new Point(rnd.Next(1, Game.Width), rnd.Next(1, Game.Height)), new Point(spdX, spdY), new Size(size, size), $"{rnd.Next(1, spaceObjVariety)}"));
+            //    ObjsList.Add(new SpaceObjects(new Point(rnd.Next(1, Width), rnd.Next(1, Height)), new Point(spdX, spdY), new Size(size, size), $"{rnd.Next(1, spaceObjVariety)}"));
             //}
             //#endregion
 
@@ -167,76 +145,5 @@ namespace MyGame
             //#endregion
         }
 
-
-        private static Button ButtonInit(string name, Size size, Point loc, Form form, EventHandler handler)
-        {
-            Color fc = Color.FromArgb(255, 103, 168, 178);
-            Color bc = Color.FromArgb(220, 7, 24, 40);
-            Color moc = Color.FromArgb(220, 43, 24, 56);
-            Color mdc = Color.FromArgb(220, 79, 41, 105);
-
-            Button btn = new Button();
-            btn.Text = name;
-            btn.Size = size;
-            //but.UseVisualStyleBackColor = true;
-
-            //but.ForeColor = fc;
-            //but.BackColor = bc;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.ForeColor = fc; //font and frame
-            btn.BackColor = bc; //button color can be also /*Color.Transparent*/
-            btn.FlatAppearance.MouseOverBackColor = moc;
-            btn.FlatAppearance.MouseDownBackColor = mdc;
-            //btn.FlatAppearance.BorderSize = 1;
-
-            //but.ForeColor = Color.Black;
-            btn.Font = new Font("Arial", 15, FontStyle.Regular);
-            btn.Location = loc;
-            btn.Click += handler;
-            form.Controls.Add(btn);
-            Image img = Image.FromFile($"..\\..\\button.png");
-            btn.Image = (Image)(new Bitmap(img, size));
-
-            return btn;
-            //form.Controls.Add(startBtn);
-        }
-
-        private static Label LabelInit(Point loc, Size size, string text, Form form)
-        {
-            Color fc = Color.FromArgb(255, 103, 168, 178);
-            Color bc = Color.FromArgb(5, 13, 6, 14);
-
-            Label label = new Label();
-            label.Location = loc;
-            label.Size = size;
-            label.Text = text;
-            label.TextAlign = ContentAlignment.MiddleLeft;
-            label.ForeColor = fc;
-            label.Font = new Font("Arial", 8, FontStyle.Bold);
-            label.BackColor = Color.Transparent;
-            form.Controls.Add(label);
-
-            return label;
-
-        }
-
-        private static void StartGame(object sender, EventArgs e)
-        {
-            Game.GameStart = true;
-            Game.ObjsList.Clear();
-            Game.timer.Interval = 160;
-            Game.Load();
-        }
-
-        private static void RecordDesk(object sender, EventArgs e)
-        {
-            MessageBox.Show("Your score: 100", "Records", MessageBoxButtons.OK);
-        }
-
-        private static void ExitGame(object sender, EventArgs e)
-        {
-            Game.timer.Stop();
-            Application.Exit();
-        }
     }
 }

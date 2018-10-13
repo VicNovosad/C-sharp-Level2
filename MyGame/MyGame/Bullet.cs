@@ -13,7 +13,7 @@ namespace MyGame
         private const int imgQty = 3; // Quantity of sprites
         private Image[] ImgArr { get; set; } = new Image[imgQty];
 
-        public Bullet(Point pos, Point dir, Size size, string imageName) : base(pos, dir, size)
+        public Bullet(Point pos, Point dir, Size size, string imageName, Game game) : base(pos, dir, size, game)
         {
             StartPos = Pos;
             try
@@ -29,36 +29,37 @@ namespace MyGame
             }
         }
 
-        public override void Draw()
+        public override void Draw(Game game)
         {
             TakenPlace = new RectangleF(Pos, Size);
-            Game.Buffer.Graphics.DrawImage(ImgArr[stage], TakenPlace);
+            game.Buffer.Graphics.DrawImage(ImgArr[stage], TakenPlace);
             //if (Img.Height > 0 || Img.Height > 0)
             //else
-            //    Game.Buffer.Graphics.DrawRectangle(Pens.OrangeRed, Pos.X, Pos.Y, Size.Width, Size.Height);
+            //    game.Buffer.Graphics.DrawRectangle(Pens.OrangeRed, Pos.X, Pos.Y, Size.Width, Size.Height);
         }
-        public override void Update()
+
+        public override void Update(Game game)
         {
             if (stage < imgQty - 1) stage++;
             else stage = 0;
 
-            CheckPosition();
+            CheckPosition(game);
 
-            if (Pos.X < Game.Width)
+            if (Pos.X < game.Width)
                 Pos.X = Pos.X + 20;
             else
                 Pos = StartPos;
         }
 
-        private void CheckPosition()
+        private void CheckPosition(Game game)
         {
-            for (var i = 0; i < Game.Asteroids.Count; i++)
+            for (var i = 0; i < game.Asteroids.Count; i++)
             {
-                if (TakenPlace.IntersectsWith(Game.Asteroids[i].TakenPlace))
+                if (TakenPlace.IntersectsWith(game.Asteroids[i].TakenPlace))
                 {
                     Pos = StartPos;
-                    Game.Asteroids[i].Pos.X = rnd.Next(200, Game.Width);
-                    Game.Asteroids[i].Pos.Y = 0;
+                    game.Asteroids[i].Pos.X = rnd.Next(200, game.Width);
+                    game.Asteroids[i].Pos.Y = 0;
                     break;
                 }
             }

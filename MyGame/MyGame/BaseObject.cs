@@ -12,6 +12,7 @@ namespace MyGame
         /// </summary>
         protected Point StartPos { get; set; }
         public RectangleF TakenPlace { get; internal set; }
+        private RectangleF Workspace;
 
         public Point Pos;
         protected Point Dir;
@@ -27,13 +28,14 @@ namespace MyGame
         /// <summary>
         /// Base Object Constructor
         /// </summary>
-        /// <param name="position"></param>
-        /// <param name="direction"></param>
+        /// <param name="pos"></param>
+        /// <param name="dir"></param>
         /// <param name="size"></param>
-        protected BaseObject(Point position, Point direction, Size size) : this(position, direction, size, ChangeDirection())
+        protected BaseObject(Point pos, Point dir, Size size, Game game) : this(pos, dir, size, ChangeDirection(), game)
         {
-            this.direction = RandomDirection(Size.Width);
-            //TakenPlace = new RectangleF(Pos, Size);
+            direction = RandomDirection(Size.Width);
+            Workspace.Width = game.Width;
+            Workspace.Width = game.Height;
         }
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace MyGame
         /// <param name="dir"></param>
         /// <param name="size"></param>
         /// <param name="direction"></param>
-        protected BaseObject(Point pos, Point dir, Size size, int direction)
+        protected BaseObject(Point pos, Point dir, Size size, int direction, Game game)
         {
             Pos = pos;
             StartPos = pos;
@@ -57,17 +59,17 @@ namespace MyGame
         /// <summary>
         /// Virtual method "Draw"
         /// </summary>
-        public abstract void Draw();
+        public abstract void Draw(Game game);
 
         /// <summary>
         /// Virtual method "Update"
         /// </summary>
-        public virtual void Update()
+        public virtual void Update(Game game)
         {
-            if (Game.GameStart == true)
+            if (game.GameStart == true)
             {
                 Pos.X = Pos.X - Dir.X;
-                if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
+                if (Pos.X < 0) Pos.X = game.Width + Size.Width;
             }
             else
             {
@@ -124,7 +126,7 @@ namespace MyGame
                     break;
             }
 
-            if (Pos.X < 0 || Pos.Y < 0 || (Pos.X > Game.Width) || (Pos.Y > Game.Height))
+            if (Pos.X < 0 || Pos.Y < 0 || (Pos.X > Workspace.Width) || (Pos.Y > Workspace.Height))
             {
                 Pos.X = StartPos.X;
                 Pos.Y = StartPos.Y;

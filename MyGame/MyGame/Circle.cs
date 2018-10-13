@@ -11,11 +11,11 @@ namespace MyGame
     {
 
         // Base Object Constructor
-        public Circle(Point position, Point direction, Size size) : base(position, direction, size)
+        public Circle(Point position, Point direction, Size size, Game game) : base(position, direction, size, game)
         {
         }
 
-        public Circle(Point pos, Point dir, Size size, int direction) : base(pos, dir, size, BaseObject.ChangeDirection())
+        public Circle(Point pos, Point dir, Size size, int direction, Game game) : base(pos, dir, size, BaseObject.ChangeDirection(), game)
         {
             this.direction = RandomDirection(Size.Width);
         }
@@ -23,9 +23,9 @@ namespace MyGame
         /// <summary>
         /// Virtual method "Draw"
         /// </summary>
-        public override void Draw()
+        public override void Draw(Game game)
         {
-            Game.Buffer.Graphics.DrawEllipse(pen, Pos.X, Pos.Y, Size.Width, Size.Height);
+            game.Buffer.Graphics.DrawEllipse(pen, Pos.X, Pos.Y, Size.Width, Size.Height);
         }
     }
 }

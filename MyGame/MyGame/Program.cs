@@ -10,7 +10,8 @@ namespace MyGame
         public static Form form;
         public static int Width = 1440;
         public static int Height = 900;
-
+        public static Game game = new Game();
+        public static SplashScreen spScreen = new SplashScreen();
 
         
         /// <summary>
@@ -21,11 +22,12 @@ namespace MyGame
         {
             form = CreateForm(Width, Height);
             //splashScreen.MaximizeBox = false;
-            //SplashScreen.Init(form);
-            Game.Init(form);
-            Game.GraphicsInit(form);
+
+            spScreen.Init(form);
+            game.Init(form);
+            game.GraphicsInit(form);
             form.Show();
-            Game.Draw();
+            game.Draw();
             Application.Run(form);
         }
 

@@ -21,7 +21,7 @@ namespace MyGame
         /// <param name="dir">Direction of the object (Speed and direction)</param>
         /// <param name="size">Size of the object</param>
         /// <param name="imageName"></param>
-        public Planet(Point pos, Point dir, Size size, string imageName) : base(pos, dir, size, imageName)
+        public Planet(Point pos, Point dir, Size size, string imageName, Game game) : base(pos, dir, size, imageName, game)
         {
             this.imageName = imageName;
         }

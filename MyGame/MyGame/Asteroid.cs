@@ -10,12 +10,12 @@ namespace MyGame
     class Asteroid : BaseObject
     {
         public int Power { get; set; }
-        public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size)
+        public Asteroid(Point pos, Point dir, Size size, Game game) : base(pos, dir, size, game)
         {
             Power = 1;
         }
 
-        public Asteroid(Point pos, Point dir, Size size, string imageName) : base(pos, dir, size)
+        public Asteroid(Point pos, Point dir, Size size, string imageName, Game game) : base(pos, dir, size, game)
         {
             Power = 1;
             try
@@ -28,18 +28,18 @@ namespace MyGame
             }
         }
 
-        public override void Draw()
+        public override void Draw(Game game)
         {
             TakenPlace = new RectangleF(Pos, Size);
             if (Img.Height > 0 || Img.Height > 0)
-                Game.Buffer.Graphics.DrawImage(Img, TakenPlace);
+                game.Buffer.Graphics.DrawImage(Img, TakenPlace);
             else
-                Game.Buffer.Graphics.FillEllipse(Brushes.White, TakenPlace);
+                game.Buffer.Graphics.FillEllipse(Brushes.White, TakenPlace);
         }
-        public override void Update()
+        public override void Update(Game game)
         {
             Pos.X = Pos.X + Dir.X;
-            if (Pos.X < -100) Pos.X = Game.Width + Size.Width;
+            if (Pos.X < -100) Pos.X = game.Width + Size.Width;
             //Pos.X = Pos.X + Dir.X;
             //Pos.Y = Pos.Y + Dir.Y;
             //if (Pos.X < 0) Pos.X = Game.Width + Size.Width;

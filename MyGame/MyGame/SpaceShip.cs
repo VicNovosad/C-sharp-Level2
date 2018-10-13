@@ -23,7 +23,7 @@ namespace MyGame
         /// <param name="dir">Direction of the object (Speed and direction)</param>
         /// <param name="size">Size of the object</param>
         /// <param name="imageName"></param>
-        public SpaceShip(Point pos, Point dir, Size size, string imageName) : base(pos, dir, size)
+        public SpaceShip(Point pos, Point dir, Size size, string imageName, Game game) : base(pos, dir, size, game)
         {
             try
             {
@@ -42,20 +42,20 @@ namespace MyGame
         /// <summary>
         /// Draw of the current object
         /// </summary>
-        public override void Draw()
+        public override void Draw(Game game)
         {
             Size.Height = ImgArr[0].Height;
             Size.Width = ImgArr[0].Width;
             TakenPlace = new RectangleF(Pos, Size);
             // Draw image to screen
-            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], TakenPlace);
+            game.Buffer.Graphics.DrawImage(ImgArr[shipStage], TakenPlace);
 
         }
 
         /// <summary>
         /// Update of the current object
         /// </summary>
-        public override void Update()
+        public override void Update(Game game)
         {
             if (shipStage < 3) shipStage++;
             else shipStage = 0;
