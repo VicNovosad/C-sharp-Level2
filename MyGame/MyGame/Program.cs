@@ -7,12 +7,12 @@ namespace MyGame
 {
     class Program
     {
+        public static bool graphicInit = false;
         public static Form form;
         public static int Width = 1440;
         public static int Height = 900;
         public static Game game = new Game();
         public static SplashScreen spScreen = new SplashScreen();
-
         
         /// <summary>
         /// Point of the entrance
@@ -22,12 +22,12 @@ namespace MyGame
         {
             form = CreateForm(Width, Height);
             //splashScreen.MaximizeBox = false;
-
             spScreen.Init(form);
-            game.Init(form);
-            game.GraphicsInit(form);
             form.Show();
-            game.Draw();
+            //spScreen.Draw();
+            //game.Init(form);
+            //game.GraphicsInit(form);
+            //game.Draw();
             Application.Run(form);
         }
 

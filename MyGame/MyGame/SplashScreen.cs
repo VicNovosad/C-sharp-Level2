@@ -7,6 +7,7 @@ namespace MyGame
 {
     class SplashScreen : Game
     {
+        //private Timer timer = new Timer();
         //private Random rnd = new Random();
 
         /// <summary>
@@ -22,6 +23,8 @@ namespace MyGame
         /// <param name="form"></param>
         public override void Init(Form form)
         {
+            GraphicsInit(form);
+
             #region add UI elements on the form
             Width = form.ClientSize.Width;
             Height = form.ClientSize.Height;
@@ -40,15 +43,39 @@ namespace MyGame
             Sign = LabelInit(new Point(20, Height - textSize.Height - 10), textSize, "2018, created by Vic Novosad", form);
             #endregion
 
+            timer.Interval = 1;
+            timer.Start();
+            timer.Tick += Timer_Tick;
             Load(form);
+            Draw();
+        }
+
+        /// <summary>
+        /// Timer Ticker method 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public override void Timer_Tick(object sender, EventArgs e)
+        {
+            Draw();
+            Update();
         }
 
         /// <summary>
         /// Method of drawing and rendering graphics
         /// </summary>
-        //public void Draw()
-        //{
-        //}
+        public override void Draw()
+        {
+            // Graphics output
+            Buffer.Graphics.Clear(Color.Black);
+            foreach (BaseObject obj in ObjsList)
+                obj.Draw(this);
+            foreach (BaseObject obj in Asteroids)
+                obj.Draw(this);
+            foreach (BaseObject obj in Bullets)
+                obj.Draw(this);
+            Buffer.Render();
+        }
 
         /// <summary>
         /// Updating all graphics objects in objsList

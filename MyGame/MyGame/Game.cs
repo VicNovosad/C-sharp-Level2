@@ -12,7 +12,7 @@ namespace MyGame
         /// </summary>
         public bool GameStart { get; set; } = false;
 
-        public bool GraphicInit { get; set; } = false;
+        //public bool GraphicInit { get; set; } = false;
 
         private BufferedGraphicsContext Context { get; set; }
         public BufferedGraphics Buffer { get; set; }
@@ -22,7 +22,7 @@ namespace MyGame
         public List<BaseObject> Asteroids { get; set; } = new List<BaseObject>();
 
         public Random rnd = new Random();
-        private Timer timer = new Timer();
+        public Timer timer = new Timer();
         public int Width { get; set; }
         public int Height { get; set; }
 
@@ -50,6 +50,8 @@ namespace MyGame
         /// <param name="form"></param>
         public virtual void Init(Form form)
         {
+            GraphicsInit(form);
+
             timer.Interval = 1;
             timer.Start();
             timer.Tick += Timer_Tick;
@@ -75,7 +77,7 @@ namespace MyGame
         /// <param name="form"></param>
         public void GraphicsInit(Form form)
         {
-            if (GraphicInit == false)
+            if (Program.graphicInit == false)
             {
                 // Create an object (drawing surface) and associate it with a form.
                 // Graphic display device
@@ -87,7 +89,7 @@ namespace MyGame
 
                 // Link the buffer in memory with the graphic object to draw in the buffer
                 Buffer = Context.Allocate(Graph, new Rectangle(0, 0, Width, Height));
-                GraphicInit = true;
+                Program.graphicInit = true;
             }
         }
 
@@ -98,7 +100,6 @@ namespace MyGame
         /// <param name="e"></param>
         public virtual void Timer_Tick(object sender, EventArgs e)
         {
-
             Draw();
             Update();
         }
@@ -106,7 +107,7 @@ namespace MyGame
         /// <summary>
         /// Method of drawing and rendering graphics
         /// </summary>
-        public void Draw()
+        public virtual void Draw()
         {
             // Graphics output
             Buffer.Graphics.Clear(Color.Black);
