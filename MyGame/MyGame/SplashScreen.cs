@@ -235,6 +235,7 @@ namespace MyGame
 
         private static void ExitGame(object sender, EventArgs e)
         {
+            Game.timer.Stop();
             Application.Exit();
         }
     }

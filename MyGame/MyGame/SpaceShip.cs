@@ -12,10 +12,8 @@ namespace MyGame
     /// </summary>
     class SpaceShip : BaseObject
     {
-        private string imageName;
         private int shipStage = 0;
-        //private Image img;
-        private const int imgQty = 4; // Quantity of SpaceShip sprites
+        private const int imgQty = 4; // Quantity of sprites
         private Image[] ImgArr { get; set; } = new Image[imgQty];
 
         /// <summary>
@@ -27,7 +25,6 @@ namespace MyGame
         /// <param name="imageName"></param>
         public SpaceShip(Point pos, Point dir, Size size, string imageName) : base(pos, dir, size)
         {
-            this.imageName = imageName;
             try
             {
                 // Creating an image
@@ -47,10 +44,11 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-            // Create Point (upper-left corner of image)
-            Point ulCorner = Pos;
+            Size.Height = ImgArr[0].Height;
+            Size.Width = ImgArr[0].Width;
+            TakenPlace = new RectangleF(Pos, Size);
             // Draw image to screen
-            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], ulCorner);
+            Game.Buffer.Graphics.DrawImage(ImgArr[shipStage], TakenPlace);
 
         }
 
