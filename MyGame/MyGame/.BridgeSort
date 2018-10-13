@@ -22,7 +22,7 @@
 <item key='sun5.png20181004105739' />
 <item key='App.config20181003160417' />
 <item key='BaseObject.cs20181003163550' />
-<item key='Game.cs20181003161052' />
+<item key='Game.cs20181010202451' />
 <item key='MyGame.csproj20181003160417' />
 <item key='Program.cs20181003160417' />
 <item key='SpaceObjects.cs20181004094641' />
@@ -43,11 +43,22 @@
 <item key='Planet.cs20181007183412' />
 <item key='Background.cs20181007204540' />
 <item key='Background2.jpg20181007235327' />
-<item key='button.png20181009010355' />
-<item key='New Text Document.txt20181009010355' />
+<item key='button.png20181011124430' />
+<item key='New Text Document.txt20181011124430' />
 <item key='Signature.png20181007235020' />
-<item key='SplashScreen.cs20181008003904' />
-<item key='StarShip.png20181010010348' />
+<item key='SplashScreen.cs20181010202451' />
+<item key='StarShip.png20181011124430' />
 <item key='Sun.cs20181007193616' />
+<item key='Asteroid.cs20181011124430' />
+<item key='Asteroid1.png20181012113542' />
+<item key='Asteroid2.png20181012113849' />
+<item key='Asteroid3.png20181012114027' />
+<item key='Asteroid4.png20181012114712' />
+<item key='Bullet.cs20181011124430' />
+<item key='bullet0.png20181012112817' />
+<item key='bullet1.png20181012132702' />
+<item key='bullet2.png20181012112946' />
+<item key='bullet3.png20181012132617' />
+<item key='Circle.cs20181011124430' />
 </files>
 </dirinfo>

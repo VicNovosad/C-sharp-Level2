@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 //Vic Novosad. C#Level2 - Lesson1
@@ -10,6 +11,7 @@ namespace MyGame
         public static int Width = 1440;
         public static int Height = 900;
 
+
         
         /// <summary>
         /// Point of the entrance
@@ -18,15 +20,8 @@ namespace MyGame
         static void Main(string[] args)
         {
             form = CreateForm(Width, Height);
-            //form.Width = Width;
-            //form.Height = Height;
-            form.StartPosition = FormStartPosition.CenterScreen;
-            form.Name = "Game";
-            form.Text = "Asteroids";
             //splashScreen.MaximizeBox = false;
             //SplashScreen.Init(form);
-            //form.Show();
-            //SplashScreen.Draw();
             Game.Init(form);
             Game.GraphicsInit(form);
             form.Show();
@@ -43,6 +38,10 @@ namespace MyGame
         public static Form CreateForm(int width, int heigth)
         {
             Form form = new Form();
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.Name = "Game";
+            form.Text = "Asteroids";
+
             try
             {
                 if (width > 0 && heigth > 0 && width < 1500 && heigth < 1000)

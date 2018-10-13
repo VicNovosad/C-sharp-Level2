@@ -31,19 +31,22 @@ namespace MyGame
         public override void Draw()
         {
             TakenPlace = new RectangleF(Pos, Size);
-            Game.Buffer.Graphics.FillEllipse(Brushes.White, TakenPlace);
-            //Game.Buffer.Graphics.DrawImage(Img, TakenPlace);
+            if (Img.Height > 0 || Img.Height > 0)
+                Game.Buffer.Graphics.DrawImage(Img, TakenPlace);
+            else
+                Game.Buffer.Graphics.FillEllipse(Brushes.White, TakenPlace);
         }
         public override void Update()
         {
             Pos.X = Pos.X + Dir.X;
-            Pos.Y = Pos.Y + Dir.Y;
-            if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
-            if (Pos.X > Game.Width) Pos.X = Game.Width - Size.Width;
-            if (Pos.Y < 0) Pos.Y = Game.Height;
-            if (Pos.Y > Game.Height) Pos.Y = 0;
+            if (Pos.X < -100) Pos.X = Game.Width + Size.Width;
+            //Pos.X = Pos.X + Dir.X;
+            //Pos.Y = Pos.Y + Dir.Y;
+            //if (Pos.X < 0) Pos.X = Game.Width + Size.Width;
+            //if (Pos.X > Game.Width) Pos.X = Game.Width - Size.Width;
+            //if (Pos.Y < 0) Pos.Y = Game.Height;
+            //if (Pos.Y > Game.Height) Pos.Y = 0;
         }
-
     }
 }
 

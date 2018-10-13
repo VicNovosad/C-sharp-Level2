@@ -67,11 +67,11 @@ namespace MyGame
         /// </summary>
         public override void Draw()
         {
-            // Create Point (upper-left corner of image)
-            Point ulCorner = Pos;
+            Size.Height = Img.Height;
+            Size.Width = Img.Width;
+            TakenPlace = new RectangleF(Pos, Size);
             // Draw image to screen
-            Game.Buffer.Graphics.DrawImage(Img, ulCorner);
-
+            Game.Buffer.Graphics.DrawImage(Img, TakenPlace);
         }
 
         public override void Update()

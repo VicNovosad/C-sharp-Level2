@@ -11,6 +11,8 @@ namespace MyGame
         /// Class properties
         /// </summary>
         public static bool GameStart { get; set; } = false;
+        public static bool GraphicInit { get; set; } = false;
+
         private static BufferedGraphicsContext Context { get; set; }
         public static BufferedGraphics Buffer { get; set; }
 
@@ -49,6 +51,9 @@ namespace MyGame
                 timer.Interval = 60;
                 Game.Load();
             }
+            //ObjsList.Clear();
+            //timer.Interval = 60;
+            //Game.Load();
         }
 
         /// <summary>
@@ -57,16 +62,20 @@ namespace MyGame
         /// <param name="form"></param>
         public static void GraphicsInit(Form form)
         {
-            // Create an object (drawing surface) and associate it with a form.
-            // Graphic display device
-            Graphics Graph;
-            // Provides access to the main graphics context buffer for the current application.
-            Context = BufferedGraphicsManager.Current;
+            if (GraphicInit == false)
+            {
+                // Create an object (drawing surface) and associate it with a form.
+                // Graphic display device
+                Graphics Graph;
+                // Provides access to the main graphics context buffer for the current application.
+                Context = BufferedGraphicsManager.Current;
 
-            Graph = form.CreateGraphics();
+                Graph = form.CreateGraphics();
 
-            // Link the buffer in memory with the graphic object to draw in the buffer
-            Buffer = Context.Allocate(Graph, new Rectangle(0, 0, Width, Height));
+                // Link the buffer in memory with the graphic object to draw in the buffer
+                Buffer = Context.Allocate(Graph, new Rectangle(0, 0, Width, Height));
+                GraphicInit = true;
+            }
         }
 
         /// <summary>
@@ -76,6 +85,7 @@ namespace MyGame
         /// <param name="e"></param>
         private static void Timer_Tick(object sender, EventArgs e)
         {
+
             Draw();
             Update();
         }
@@ -142,12 +152,12 @@ namespace MyGame
 
             #region Bullets & Asteroids
 
-            Bullets.Add(new Bullet(new Point(0, 200), new Point(3, 0), new Size(6, 2)));
+            Bullets.Add(new Bullet(new Point(180, Height / 2 - 4), new Point(3, 0), new Size(57, 8), "bullet"));
 
             for (int i = 0; i < baseObjQty; i++)
             {
                 int r = rnd.Next(5, 50);
-                Asteroids.Add(new Asteroid(new Point(600, rnd.Next(0, Game.Height)), new Point(-r / 5, r), new Size(30, 30)));
+                Asteroids.Add(new Asteroid(new Point(600, rnd.Next(0, Game.Height)), new Point(-r / 5, r), new Size(30, 30), "Asteroid2"));
             }
 
             #endregion
@@ -203,10 +213,23 @@ namespace MyGame
             #endregion
 
             #region SpaceShip
-            ObjsList.Add(new SpaceShip(new Point(1, Height / 2 - 65), new Point(1, 1), new Size(1, 1), "SpaceShip"));
+            ObjsList.Add(new SpaceShip(new Point(1, Height / 2 - 65), new Point(1, 1), new Size(200, 125), "SpaceShip"));
             #endregion
         }
 
+        //private void CheckPosition()
+        //{
+        //    for (var i = 0; i < Game.Asteroids.Count; i++)
+        //    {
+        //        if (TakenPlace.IntersectsWith(Game.Asteroids[i].TakenPlace))
+        //        {
+        //            Pos = StartPos;
+        //            Game.Asteroids[i].Pos.X = rnd.Next(200, Game.Width);
+        //            Game.Asteroids[i].Pos.Y = 0;
+        //            break;
+        //        }
+        //    }
+        //}
 
 
     }
