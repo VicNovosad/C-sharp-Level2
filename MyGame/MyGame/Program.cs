@@ -10,9 +10,9 @@ namespace MyGame
         public static Form form;
         public static int Width = 1440;
         public static int Height = 900;
+        public static bool GameStart { get; set; } = false;
 
 
-        
         /// <summary>
         /// Point of the entrance
         /// </summary>
@@ -23,9 +23,9 @@ namespace MyGame
             //splashScreen.MaximizeBox = false;
             //SplashScreen.Init(form);
             Game.Init(form);
-            Game.GraphicsInit(form);
-            form.Show();
-            Game.Draw();
+            //Game.GraphicsInit(form);
+            //form.Show();
+            //Game.Draw();
             Application.Run(form);
         }
 

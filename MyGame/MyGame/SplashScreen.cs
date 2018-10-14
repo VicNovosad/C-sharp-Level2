@@ -8,6 +8,7 @@ namespace MyGame
     class SplashScreen
     {
         private static Random rnd = new Random();
+        public static Timer timer = new Timer();
 
         #region UI Elements
         private static Button startBtn;
@@ -33,6 +34,9 @@ namespace MyGame
         /// <param name="form"></param>
         public static void Init(Form form)
         {
+            //timer.Interval = 1;
+            //timer.Start();
+            //timer.Tick += Timer_Tick;
             #region add UI elements on the form
             Game.Width = form.ClientSize.Width;
             Game.Height = form.ClientSize.Height;
@@ -52,6 +56,22 @@ namespace MyGame
             #endregion
 
             Load(form);
+
+            //if (GameStart == false)
+            //{
+            //    SplashScreen.Init(form);
+            //}
+            //else
+            //{
+            //    ObjsList.Clear();
+            //    timer.Interval = 60;
+            //    Game.Load();
+            //}
+
+            //GraphicsInit(form);
+            //form.Show();
+            //Draw();
+
         }
 
         /// <summary>
@@ -222,7 +242,7 @@ namespace MyGame
 
         private static void StartGame(object sender, EventArgs e)
         {
-            Game.GameStart = true;
+            Program.GameStart = true;
             Game.ObjsList.Clear();
             Game.timer.Interval = 160;
             Game.Load();

@@ -10,7 +10,7 @@ namespace MyGame
         /// <summary>
         /// Class properties
         /// </summary>
-        public static bool GameStart { get; set; } = false;
+        //public static bool GameStart { get; set; } = false;
         public static bool GraphicInit { get; set; } = false;
 
         private static BufferedGraphicsContext Context { get; set; }
@@ -41,7 +41,7 @@ namespace MyGame
             timer.Interval = 1;
             timer.Start();
             timer.Tick += Timer_Tick;
-            if (GameStart == false)
+            if (Program.GameStart == false)
             {
                 SplashScreen.Init(form);
             }
@@ -51,6 +51,11 @@ namespace MyGame
                 timer.Interval = 60;
                 Game.Load();
             }
+
+            GraphicsInit(form);
+            form.Show();
+            Draw();
+
             //ObjsList.Clear();
             //timer.Interval = 60;
             //Game.Load();
