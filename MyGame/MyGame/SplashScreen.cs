@@ -152,6 +152,7 @@ namespace MyGame
             Game.ObjsList.Add(new Background(new Point(705, 460), "StarShip", "png"));
             #endregion
 
+
             //#region SpaceObjects
             //for (int i = 1; i <= spaceObjQty; i++)
             //{
@@ -244,7 +245,9 @@ namespace MyGame
         {
             Program.GameStart = true;
             Game.ObjsList.Clear();
-            Game.timer.Interval = 160;
+            Game.Asteroids.Clear();
+            Game.Bullets.Clear();
+            Game.timer.Interval = 60;
             Game.Load();
         }
 
@@ -256,6 +259,7 @@ namespace MyGame
         private static void ExitGame(object sender, EventArgs e)
         {
             Game.timer.Stop();
+            Program.form.Close();
             Application.Exit();
         }
     }

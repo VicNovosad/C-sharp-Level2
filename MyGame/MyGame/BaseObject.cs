@@ -5,19 +5,19 @@ namespace MyGame
     /// <summary>
     /// Base Object (Point position(x,y), Point direction(x,y), Size size(x,y))
     /// </summary>
-    abstract class BaseObject
+    abstract class BaseObject : ICollision
     {
         /// <summary>
         /// class properties
         /// </summary>
-        protected Point StartPos { get; set; }
+        public Point StartPos { get; set; }
         public RectangleF TakenPlace { get; internal set; }
 
         public Point Pos;
-        protected Point Dir;
-        protected Size Size;
-        protected Pen pen;
-        protected Image Img;
+        public Point Dir;
+        public Size Size;
+        public Pen pen;
+        public Image Img;
         //public RectangleF TakenPlace;
 
         protected static Random rnd = new Random();
@@ -53,6 +53,8 @@ namespace MyGame
             this.direction = direction;
         }
 
+        public bool Collision(ICollision o) => o.Rect.IntersectsWith(this.Rect);
+        public Rectangle Rect => new Rectangle(Pos, Size);
 
         /// <summary>
         /// Virtual method "Draw"
@@ -188,6 +190,18 @@ namespace MyGame
                     return Pens.LightBlue;
                 default:
                     return Pens.LightGray;
+            }
+        }
+
+        public void ImgFromFile(string imageName)
+        {
+            try
+            {
+                Img = Image.FromFile($"..\\..\\{imageName}.png");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 

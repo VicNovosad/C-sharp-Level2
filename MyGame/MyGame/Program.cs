@@ -27,6 +27,7 @@ namespace MyGame
             //form.Show();
             //Game.Draw();
             Application.Run(form);
+            //Application.Run(new AnimateImage("SunRotation"));
         }
 
         /// <summary>

@@ -42,7 +42,7 @@ namespace MyGame
             if (stage < imgQty - 1) stage++;
             else stage = 0;
 
-            CheckPosition();
+            //CheckPosition();
 
             if (Pos.X < Game.Width)
                 Pos.X = Pos.X + 20;
@@ -50,19 +50,19 @@ namespace MyGame
                 Pos = StartPos;
         }
 
-        private void CheckPosition()
-        {
-            for (var i = 0; i < Game.Asteroids.Count; i++)
-            {
-                if (TakenPlace.IntersectsWith(Game.Asteroids[i].TakenPlace))
-                {
-                    Pos = StartPos;
-                    Game.Asteroids[i].Pos.X = rnd.Next(200, Game.Width);
-                    Game.Asteroids[i].Pos.Y = 0;
-                    break;
-                }
-            }
-        }
+        //private void CheckPosition()
+        //{
+        //    for (var i = 0; i < Game.Asteroids.Count; i++)
+        //    {
+        //        if (TakenPlace.IntersectsWith(Game.Asteroids[i].TakenPlace))
+        //        {
+        //            Pos = StartPos;
+        //            Game.Asteroids[i].Pos.X = rnd.Next(200, Game.Width);
+        //            Game.Asteroids[i].Pos.Y = 0;
+        //            break;
+        //        }
+        //    }
+        //}
 
     }
 }

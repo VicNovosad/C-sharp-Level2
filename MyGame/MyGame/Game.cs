@@ -19,6 +19,7 @@ namespace MyGame
         public static List<BaseObject> ObjsList { get; set; } = new List<BaseObject>();
         public static List<BaseObject> Bullets { get; set; } = new List<BaseObject>();
         public static List<BaseObject> Asteroids { get; set; } = new List<BaseObject>();
+        //public static List<AnimateImage> RotatingObjects { get; set; } = new List<AnimateImage>();
 
         private static Random rnd = new Random();
         public static Timer timer = new Timer();
@@ -118,11 +119,24 @@ namespace MyGame
         {
             foreach (BaseObject obj in ObjsList)
                 obj.Update();
-            foreach (BaseObject obj in Asteroids)
-                obj.Update();
+            foreach (BaseObject a in Asteroids)
+            {
+                a.Update();
+                //foreach (BaseObject b in Bullets)
+                for (int i = Bullets.Count - 1; i >= 0; i--)
+                {
+                    if (a.Collision(Bullets[i]))
+                    {
+                        System.Media.SystemSounds.Hand.Play();
+                        Bullets[i].Pos = Bullets[i].StartPos;
+                        Bullets.RemoveAt(i);
+                        a.Pos.X = Game.Width;
+                        a.Pos.Y = rnd.Next(125, Game.Height - 125);
+                    }
+                }
+            }
             foreach (BaseObject obj in Bullets)
                 obj.Update();
-
         }
 
         /// <summary>
@@ -155,14 +169,19 @@ namespace MyGame
             ObjsList.Add(new Background("Background"));
             #endregion
 
+            //RotatingObjects.Add(new AnimateImage("SunRotation"));
+            
             #region Bullets & Asteroids
 
             Bullets.Add(new Bullet(new Point(180, Height / 2 - 4), new Point(3, 0), new Size(57, 8), "bullet"));
 
             for (int i = 0; i < baseObjQty; i++)
             {
-                int r = rnd.Next(5, 50);
-                Asteroids.Add(new Asteroid(new Point(600, rnd.Next(0, Game.Height)), new Point(-r / 5, r), new Size(30, 30), "Asteroid2"));
+                //int dirX = rnd.Next(5, 50);
+                //int dirY = rnd.Next(-1, 1);
+                //Asteroids.Add(new Asteroid(new Point(rnd.Next(Game.Width - 30, Game.Width + 50), rnd.Next(125, Game.Height - 125)), new Point(-dirX / 5, dirY), new Size(30, 30), "Asteroid2"));
+
+                Asteroids.Add(new Asteroid(new Size(30, 30), rnd.Next(1, 10)));
             }
 
             #endregion

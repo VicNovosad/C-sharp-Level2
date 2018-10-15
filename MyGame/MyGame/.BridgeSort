@@ -50,15 +50,16 @@
 <item key='StarShip.png20181011124430' />
 <item key='Sun.cs20181007193616' />
 <item key='Asteroid.cs20181011124430' />
-<item key='Asteroid1.png20181012113542' />
-<item key='Asteroid2.png20181012113849' />
-<item key='Asteroid3.png20181012114027' />
-<item key='Asteroid4.png20181012114712' />
+<item key='Asteroid4.png20181013002017' />
+<item key='Asteroid2.png20181013002017' />
+<item key='Asteroid1.png20181013002017' />
+<item key='Asteroid0.png20181013002017' />
 <item key='Bullet.cs20181011124430' />
-<item key='bullet0.png20181012112817' />
-<item key='bullet1.png20181012132702' />
-<item key='bullet2.png20181012112946' />
-<item key='bullet3.png20181012132617' />
+<item key='bullet0.png20181013002017' />
+<item key='bullet1.png20181013002017' />
+<item key='bullet2.png20181013002017' />
+<item key='bullet3.png20181013002017' />
 <item key='Circle.cs20181011124430' />
+<item key='ICollision.cs20181014001742' />
 </files>
 </dirinfo>
