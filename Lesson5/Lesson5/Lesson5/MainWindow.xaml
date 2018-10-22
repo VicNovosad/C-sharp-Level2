@@ -95,7 +95,7 @@
                       Grid.Column="2" 
                       HorizontalAlignment="Stretch" 
                       Margin="10" Grid.Row="1" VerticalAlignment="Top">
-                      <!--Selected="cbDepartments_Selected"-->
+                      <!--Selected="cbDepartments_Selected" -->
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"/>
