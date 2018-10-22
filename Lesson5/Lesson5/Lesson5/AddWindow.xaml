@@ -1,0 +1,30 @@
+﻿<Window x:Class="Lesson5.AddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lesson5"
+        mc:Ignorable="d"
+        Title="Add Window" Height="450" Width="800">
+    <Grid x:Name="mainGrid" Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Employee" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Label Content="Last Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,0,0" Grid.Column="0"/>
+        <TextBox x:Name="bLastName" Height="20" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="120" Margin="0,40,0,0" Grid.Column="0"/>
+        <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,80,0,0" Grid.Column="0"/>
+        <TextBox x:Name="bName" Height="20" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="120" Margin="0,80,0,0" Grid.Column="0"/>
+        <Label Content="Salary" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,120,0,0" Grid.Column="0"/>
+        <TextBox x:Name="bSalary" Height="20" TextWrapping="NoWrap"  VerticalAlignment="Top" Width="120" Margin="0,120,0,0" Grid.Column="0"/>
+        <Label Content="Department" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,160,0,0" Grid.Column="0"/>
+        <ComboBox x:Name="cbDepartment" HorizontalAlignment="Center" Height="20" Width="100" VerticalAlignment="Top" Margin="0,160,0,0" Grid.Column="0"/>
+        <Button x:Name="btnAddEmployee" Content="Add" HorizontalAlignment="Center" Margin="149,212,148,0" VerticalAlignment="Top" Width="99" Grid.Column="0" RenderTransformOrigin="0.181,0.612"/>
+        <Label Content="Department" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="165,0,157,0" />
+        <Label Content="Title of Department" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,37,0,0" Grid.Column="1"/>
+        <TextBox x:Name="bDepartment" Height="20" TextWrapping="NoWrap" VerticalAlignment="Top" Width="120" Margin="145,41,131,0" Grid.Column="1"/>
+        <Button x:Name="btnAddDep" Content="Add" HorizontalAlignment="Center" Margin="294,41,27,0" VerticalAlignment="Top" Width="75" Grid.Column="1" RenderTransformOrigin="0.501,1.573"/>
+    </Grid>
+</Window>
+
