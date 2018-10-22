@@ -45,10 +45,10 @@ namespace Lesson5
             DepartmentDb.Add(new Department() { Name = "Advertizing" });
             DepartmentDb.Add(new Department() { Name = "IT" });
 
-            EmployeeDb.Add(new Employee() { Id = 1, Name = "Bob", LastName = "Dylan", Age = 22, Salary = 9000 });
-            EmployeeDb.Add(new Employee() { Id = 2, Name = "John", LastName = "Surman", Age = 25, Salary = 6000 });
-            EmployeeDb.Add(new Employee() { Id = 3, Name = "Jackson", LastName = "Michael", Age = 23, Salary = 8000 });
-            EmployeeDb.Add(new Employee() { Id = 4, Name = "John", LastName = "Lennon", Age = 35, Salary = 2000 });
+            EmployeeDb.Add(new Employee() { Id = 1, Name = "Bob", LastName = "Dylan", Age = 22, Salary = 9000, Dep =  DepartmentDb[0]});
+            EmployeeDb.Add(new Employee() { Id = 2, Name = "John", LastName = "Surman", Age = 25, Salary = 6000, Dep = DepartmentDb[1]});
+            EmployeeDb.Add(new Employee() { Id = 3, Name = "Jackson", LastName = "Michael", Age = 23, Salary = 8000, Dep = DepartmentDb[2]});
+            EmployeeDb.Add(new Employee() { Id = 4, Name = "John", LastName = "Lennon", Age = 35, Salary = 2000, Dep = DepartmentDb[3]});
         }
     }
 

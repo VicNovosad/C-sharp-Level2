@@ -29,5 +29,10 @@ namespace Lesson5
             mainStackPanel.DataContext = e;
             btnAddEmployee.Visibility = btnVisability;
         }
+
+        //private void btnAddEmployee_Click(Employee emp, RoutedEventArgs e)
+        //{
+        //   //org.Employee.Add(emp);
+        //}
     }
 }

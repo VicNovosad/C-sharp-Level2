@@ -15,7 +15,7 @@ namespace Lesson5
         public string LastName { get; set; }
         public int Age { get; set; }
         public int Salary { get; set; }
-        //public Department Dep { get; set; }
+        public Department Dep { get; set; }
 
         /// <summary>
         /// Constructor

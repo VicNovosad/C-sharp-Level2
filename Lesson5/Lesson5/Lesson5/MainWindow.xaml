@@ -19,12 +19,18 @@
         </Grid.ColumnDefinitions>
         
         <ListView Name="lvEmployees"
+                  VirtualizingStackPanel.IsVirtualizing = "True"
                   VerticalAlignment = "Stretch"
                   ItemsSource="{Binding Path=EmployeeDb}"
                   SelectionMode="Single"
                   Background="LightGray" Grid.RowSpan="2"
                   MouseDoubleClick = "lvEmployee_MouseDoubleClick"
                   Margin="10">
+                  <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                  </ListView.ItemsPanel>
            
             <ListView.View>
                 <GridView>
@@ -44,7 +50,7 @@
                                     DisplayMemberBinding="{Binding Salary}" />
 
                     <GridViewColumn Header=" Department" Width="150" 
-                                    DisplayMemberBinding="{Binding Department}" />
+                                    DisplayMemberBinding="{Binding Dep.Name}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -83,6 +89,7 @@
                      Margin="12,10,12,0"/>
                       <!--Text="{Binding ElementName=cbDepartments, Path=SelectedItem, Mode=OneWay}"-->
             <ComboBox x:Name="cbDepartments"
+                      VirtualizingStackPanel.IsVirtualizing = "True"
                       ItemsSource="{Binding DepartmentDb}"
                       SelectedIndex="-1"
                       Grid.Column="2" 
@@ -94,6 +101,11 @@
                         <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
             </ComboBox>
         </StackPanel>
     </Grid>

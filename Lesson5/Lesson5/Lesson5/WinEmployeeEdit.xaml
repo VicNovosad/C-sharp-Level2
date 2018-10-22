@@ -21,6 +21,7 @@
             <Button x:Name="btnAddEmployee" Content="Add New Employee"
                     Visibility="Collapsed"
                     Margin="150,5,7,0"/>
+                    <!--Click="btnAddEmployee_Click"-->
             <!--IsEnabled="False"-->
         </StackPanel>
         <StackPanel Margin="0,27,00,0">
