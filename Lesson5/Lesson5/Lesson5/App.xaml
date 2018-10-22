@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:Lesson5"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType = "TextBlock">
+            <Setter Property = "Foreground" Value = "Black" />
+            <!--<Setter Property = "FontSize" Value = "20" />-->
+        </Style>
+        <Style TargetType = "GridViewColumnHeader">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+
+        <!--<Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>-->
     </Application.Resources>
 </Application>
+
+ 

@@ -6,61 +6,95 @@
         xmlns:local="clr-namespace:Lesson5"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="700">
+
     <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="90*"/>
+            <!--<ColumnDefinition Width="40*"/>-->
             <ColumnDefinition Width="30*"/>
         </Grid.ColumnDefinitions>
-        <ListView Name="lvEmployees" Margin="10"
+        
+        <ListView Name="lvEmployees"
+                  VerticalAlignment = "Stretch"
                   ItemsSource="{Binding Path=EmployeeDb}"
                   SelectionMode="Single"
-                  SelectionChanged = "lvEmployee_SelectionChanged"
-                  VerticalAlignment = "Stretch"
-                  Background="LightGray" Grid.RowSpan="2" >
+                  Background="LightGray" Grid.RowSpan="2"
+                  MouseDoubleClick = "lvEmployee_MouseDoubleClick"
+                  Margin="10">
+           
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header=" ID" Width="25"
+                                    DisplayMemberBinding="{Binding Id}" />
+
+                    <GridViewColumn Header=" Name" Width="80" 
+                                    DisplayMemberBinding="{Binding Name}"/>
+
+                    <GridViewColumn Header=" LastName" Width="100" 
+                                    DisplayMemberBinding="{Binding LastName}"/>
+
+                    <GridViewColumn Header=" Age" Width="30" 
+                                    DisplayMemberBinding="{Binding Age}"  />
+
+                    <GridViewColumn Header=" Slary" Width="57" 
+                                    DisplayMemberBinding="{Binding Salary}" />
+
+                    <GridViewColumn Header=" Department" Width="150" 
+                                    DisplayMemberBinding="{Binding Department}" />
+                </GridView>
+            </ListView.View>
         </ListView>
-        <ListView Name="lvDepartments" Margin="10" SelectionMode="Single"
+
+        <!--<ListView Name="lvDepartments" Margin="10" SelectionMode="Single"
                   ItemsSource="{Binding Path=DepartmentDb}"
-                  SelectionChanged = "lvEmployee_SelectionChanged"
+                  MouseDoubleClick="lvDepartments_MouseDoubleClick"
                   VerticalAlignment = "Stretch"
                   Background="LightGray" 
                   Grid.RowSpan="2" 
                   Grid.Column="1">
-        </ListView>
-        <!--<ListBox Name="lbEmployee" Margin="10" SelectionMode="Single"
-                 SelectionChanged = "lbEmployee_SelectionChanged"
-                 VerticalAlignment = "Stretch"
-                 Background="LightGray" >
-        </ListBox>-->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header=" Departments" Width="186"
+                                    DisplayMemberBinding="{Binding Name}" />
+                </GridView>
+            </ListView.View>
+        </ListView>-->
 
         <StackPanel Grid.Column="2" Grid.RowSpan="2">
-            <Button x:Name="btnAdd" Margin="10" Content="Add"/>
+            <Button x:Name="btnAddEmployee" 
+                    Margin="10" 
+                    Click="btnAddEmployee_Click"
+                    Content="Add Employee"/>
+            <Button x:Name="btnAddDepartment" 
+                Margin="10" 
+                Click="btnAddDepartment_Click"
+                Content="Add Department"/>
             <Button x:Name="btnChangeDepartment" 
                     Margin="10" 
                     Content="Change Department"
                     Click="edtDepartment_Click"/>
             <TextBox x:Name="tbDepartment"
-                      TextWrapping="Wrap" 
-                      HorizontalAlignment="Left"
-                      Margin="12,0,0,0"/>
-            <!--Text="{Binding ElementName=cbDepartments, Path=SelectedItem, Mode=OneWay}"/>-->
+                     TextWrapping="Wrap" 
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="12,10,12,0"/>
+                      <!--Text="{Binding ElementName=cbDepartments, Path=SelectedItem, Mode=OneWay}"-->
             <ComboBox x:Name="cbDepartments"
-                      ItemsSource="{Binding Path=DepartmentDb}"
-                      SelectedIndex="0"
+                      ItemsSource="{Binding DepartmentDb}"
+                      SelectedIndex="-1"
                       Grid.Column="2" 
                       HorizontalAlignment="Stretch" 
-                      Margin="10" Grid.Row="1" VerticalAlignment="Top"/>
+                      Margin="10" Grid.Row="1" VerticalAlignment="Top">
+                      <!--Selected="cbDepartments_Selected"-->
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </StackPanel>
-        <!--<ListBox.ItemTemplate>
-            <DataTemplate>
-                <Rectangle Fill="Red"
-                            Height="4"
-                            Width="{Binding}"/>
-            </DataTemplate>
-        </ListBox.ItemTemplate>-->
     </Grid>
 </Window>

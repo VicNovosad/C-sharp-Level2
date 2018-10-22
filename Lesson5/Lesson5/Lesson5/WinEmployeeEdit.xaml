@@ -1,0 +1,33 @@
+﻿<Window x:Class="Lesson5.WinEmployeeEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lesson5"
+        mc:Ignorable="d"
+        Title="WinEmployeeEdit" Height="180" Width="350">
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="mainStackPanel"  Grid.Column="1">
+            <Label Content="Change fields of current employee:"/>
+            <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <TextBox Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+            <Button x:Name="btnAddEmployee" Content="Add New Employee"
+                    Visibility="Collapsed"
+                    Margin="150,5,7,0"/>
+            <!--IsEnabled="False"-->
+        </StackPanel>
+        <StackPanel Margin="0,27,00,0">
+            <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28"/>
+            <Label Content="Last Name" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28"/>
+            <Label Content="Age" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28"/>
+            <Label Content="Text" HorizontalAlignment="Left" VerticalAlignment="Center" Height="28"/>
+        </StackPanel>
+    </Grid>
+</Window>
